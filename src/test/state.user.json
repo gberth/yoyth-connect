@@ -1,0 +1,421 @@
+{
+    "email": "sitekey",
+    "id": "7e9dcf31-04da-495f-9baa-f5a466ea075b",
+    "check": true,
+    "sources": {
+        "maximinus": {
+            "metrics": {
+                "groups": [
+                    "aid",
+                    "att",
+                    "eng",
+                    "cust_eng",
+                    "cust_eng_h",
+                    "cust_eng_in_h",
+                    "content"
+                ],
+                "names": []
+            },
+            "groups": {
+                "all_sites": {
+                    "now": true
+                },
+                "mainsite_rombla": {
+                    "now": true
+                },
+                "mainsite_valdre": {
+                    "now": true
+                }
+            }
+        }
+    },
+    "globals": {
+        "time_backgroundcolors": [
+            "indigo3",
+            "indigo4",
+            "blue3",
+            "blue4",
+            "blue5",
+            "blue6",
+            "sky3",
+            "sky4",
+            "sky5",
+            "sky6"
+        ],
+        "time_bordercolors": [
+            "warm0",
+            "warm0",
+            "warm0",
+            "warm0",
+            "warm0",
+            "warm0",
+            "warm0",
+            "warm0",
+            "warm0",
+            "warm0"
+        ],
+        "time_legends": [
+            "<10",
+            "10-30",
+            "30-60",
+            "60-90",
+            "90-120",
+            "120-180",
+            "180-240",
+            "240-300",
+            "300-600",
+            "600->"
+        ],
+        "segment_keys": [
+            [
+                "",
+                "F",
+                "M"
+            ],
+            [
+                "",
+                "30-",
+                "30",
+                "40",
+                "50-",
+                "50",
+                "50+",
+                "60",
+                "70+"
+            ]
+        ]
+    },
+    "dashboard_profiles": [
+        {
+            "profile_name": "Engasjement",
+            "dashboards": [
+                {
+                    "instance_parameters": [
+                        {
+                            "source": "maximinus",
+                            "group": "mainsite_avisao",
+                            "segment": "",
+                            "group_text": "Engasjement Avisa Oslo",
+                            "hidden": false,
+                            "instance_name": "Engasjement Avisa Oslo"
+                        }
+                    ],
+                    "dashboard": {
+                        "text": "{group_text}, {segment}",
+                        "type": "insight_board",
+                        "dashboard_elements": [
+                            {
+                                "text": "Fordeling engasjerte kunder ",
+                                "type": "time_interval",
+                                "state": {
+                                    "metrics": [
+                                        {
+                                            "text": "Totalt",
+                                            "engagement": [
+                                                "metrics",
+                                                "maximinus",
+                                                "{group}",
+                                                [
+                                                    "n_cust_eng0",
+                                                    "n_cust_eng1",
+                                                    "n_cust_eng2",
+                                                    "n_cust_eng3",
+                                                    "n_cust_eng4",
+                                                    "n_cust_eng5",
+                                                    "n_cust_eng6",
+                                                    "n_cust_eng7",
+                                                    "n_cust_eng8",
+                                                    "n_cust_eng9"
+                                                ],
+                                                "dates",
+                                                "2023-01-30",
+                                                "{segment}"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "text": "Fordeling engasjement i time {hour} - ",
+                                "type": "time_interval",
+                                "state": {
+                                    "metrics": [
+                                        {
+                                            "text": "Totalt",
+                                            "engagement": [
+                                                "metrics",
+                                                "maximinus",
+                                                "{group}",
+                                                [
+                                                    "n_cust_eng0_in_h",
+                                                    "n_cust_eng1_in_h",
+                                                    "n_cust_eng2_in_h",
+                                                    "n_cust_eng3_in_h",
+                                                    "n_cust_eng4_in_h",
+                                                    "n_cust_eng5_in_h",
+                                                    "n_cust_eng6_in_h",
+                                                    "n_cust_eng7_in_h",
+                                                    "n_cust_eng8_in_h",
+                                                    "n_cust_eng9_in_h"
+                                                ],
+                                                "dates",
+                                                "2023-01-30",
+                                                "{segment}"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "profile_name": "Aid",
+            "dashboards": [
+                {
+                    "instance_parameters": [
+                        {
+                            "source": "maximinus",
+                            "group": "mainsite_avisao",
+                            "segment": [
+                                "70+",
+                                "60",
+                                "50",
+                                "50+",
+                                "50-",
+                                "40",
+                                "30",
+                                "30-"
+                            ],
+                            "group_text": "Aid Avisa Oslo",
+                            "hidden": false,
+                            "instance_name": "Aid data Avisa Oslo"
+                        }
+                    ],
+                    "dashboard": {
+                        "text": "{group_text}",
+                        "type": "insight_board",
+                        "dashboard_elements": [
+                            {
+                                "text": "Antall kunde aid - Fordelt på alder ",
+                                "type": "age_segment_intervals",
+                                "segment_keys": [
+                                    [
+                                        "",
+                                        "F",
+                                        "M"
+                                    ],
+                                    [
+                                        "70+",
+                                        "60",
+                                        "50",
+                                        "50+",
+                                        "50-",
+                                        "40",
+                                        "30",
+                                        "30-"
+                                    ]
+                                ],
+                                "state": {
+                                    "metric": {
+                                        "text": "",
+                                        "sum": [
+                                            "metrics",
+                                            "maximinus",
+                                            "{group}",
+                                            "n_aid_cust",
+                                            "dates",
+                                            "2023-01-30"
+                                        ],
+                                        "last": [
+                                            "metrics",
+                                            "maximinus",
+                                            "{group}",
+                                            "n_aid_cust",
+                                            "dates",
+                                            "2023-01-30",
+                                            "{segment}"
+                                        ],
+                                        "ref": [
+                                            "metrics",
+                                            "maximinus",
+                                            "{group}",
+                                            "n_aid_cust",
+                                            "days",
+                                            "D1",
+                                            "{segment}"
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "profile_name": "Abo",
+            "dashboards": [
+                {
+                    "instance_parameters": [
+                        {
+                            "source": "maximinus",
+                            "group": "mainsite_avisao",
+                            "segment": "",
+                            "group_text": "avisao abo",
+                            "hidden": false,
+                            "instance_name": "Abo data Avisa Oslo"
+                        }
+                    ],
+                    "dashboard": {
+                        "text": "{group_text}, {segment}",
+                        "type": "insight_board",
+                        "dashboard_elements": [
+                            {
+                                "text": "Abo: endringer",
+                                "type": "multiple_metrics",
+                                "state": {
+                                    "metrics": [
+                                        {
+                                            "text": "Kjøpt",
+                                            "last": [
+                                                "metrics",
+                                                "maximinus",
+                                                "{group}",
+                                                "n_abo",
+                                                "dates",
+                                                "2023-01-30",
+                                                "{segment}"
+                                            ]
+                                        },
+                                        {
+                                            "text": "Avsluttet",
+                                            "reversed_factor": true,
+                                            "last": [
+                                                "metrics",
+                                                "maximinus",
+                                                "{group}",
+                                                "n_abo_cancel",
+                                                "dates",
+                                                "2023-01-30",
+                                                "{segment}"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "type": "gender_segment_array",
+                                "state": {
+                                    "metrics": [
+                                        {
+                                            "text": "Kjøpt",
+                                            "last": [
+                                                "metrics",
+                                                "maximinus",
+                                                "{group}",
+                                                "n_abo",
+                                                "dates",
+                                                "2023-01-30"
+                                            ]
+                                        },
+                                        {
+                                            "text": "Avsluttet",
+                                            "reversed_factor": true,
+                                            "last": [
+                                                "metrics",
+                                                "maximinus",
+                                                "{group}",
+                                                "n_abo_cancel",
+                                                "dates",
+                                                "2023-01-30"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "profile_name": "Abtest",
+            "dashboards": [
+                {
+                    "instance_parameters": [
+                        {
+                            "source": "maximinus",
+                            "group": "nettav",
+                            "segment": "",
+                            "group_text": "nettavisen",
+                            "hidden": false,
+                            "instance_name": "ab-test data nettavisen"
+                        }
+                    ],
+                    "dashboard": {
+                        "text": "{group_text}, {segment}",
+                        "type": "insight_board",
+                        "dashboard_elements": [
+                            {
+                                "text": "Ab-test",
+                                "type": "ab_test",
+                                "state": {
+                                    "metrics": [
+                                        {
+                                            "text": "AB",
+                                            "current": [
+                                                "abtests",
+                                                "test1"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "profile_name": "content",
+            "dashboards": [
+                {
+                    "instance_parameters": [
+                        {
+                            "source": "maximinus",
+                            "group": "none",
+                            "segment": "",
+                            "group_text": "content",
+                            "hidden": false,
+                            "instance_name": "content data"
+                        }
+                    ],
+                    "dashboard": {
+                        "text": "{group_text}, {segment}",
+                        "type": "insight_board",
+                        "dashboard_elements": [
+                            {
+                                "text": "content",
+                                "type": "content_test",
+                                "state": {
+                                    "metrics": [
+                                        {
+                                            "text": "Content",
+                                            "current": [
+                                                "contents",
+                                                "testcontent"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

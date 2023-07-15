@@ -1,0 +1,696 @@
+{
+    "test1": {
+        "card": {
+            "a": {
+                "title": "Tittel test a skal være kjempelang så vi får se hvordan det brekker når det blir enda lenger",
+                "30": {
+                    "click": 9,
+                    "read": 32,
+                    "view": 67
+                },
+                "30-": {
+                    "click": 3,
+                    "read": 9,
+                    "view": 12
+                },
+                "40": {
+                    "click": 11,
+                    "read": 44,
+                    "view": 116
+                },
+                "50": {
+                    "click": 29,
+                    "read": 112,
+                    "view": 132
+                },
+                "50+": {
+                    "click": 72,
+                    "read": 277,
+                    "view": 311
+                },
+                "50-": {
+                    "click": 23,
+                    "read": 85,
+                    "view": 195
+                },
+                "60": {
+                    "click": 27,
+                    "read": 102,
+                    "view": 109
+                },
+                "70+": {
+                    "click": 16,
+                    "read": 63,
+                    "view": 70
+                },
+                "F": {
+                    "click": 22,
+                    "read": 88,
+                    "view": 137
+                },
+                "F30": {
+                    "click": 1,
+                    "read": 4,
+                    "view": 5
+                },
+                "F30-": {
+                    "view": 6
+                },
+                "F40": {
+                    "click": 6,
+                    "read": 24,
+                    "view": 34
+                },
+                "F50": {
+                    "click": 5,
+                    "read": 20,
+                    "view": 41
+                },
+                "F50+": {
+                    "click": 14,
+                    "read": 56,
+                    "view": 89
+                },
+                "F50-": {
+                    "click": 7,
+                    "read": 28,
+                    "view": 45
+                },
+                "F60": {
+                    "click": 3,
+                    "read": 12,
+                    "view": 27
+                },
+                "F70+": {
+                    "click": 6,
+                    "read": 24,
+                    "view": 21
+                },
+                "M": {
+                    "click": 71,
+                    "read": 270,
+                    "view": 364
+                },
+                "M30": {
+                    "click": 8,
+                    "read": 28,
+                    "view": 62
+                },
+                "M30-": {
+                    "click": 3,
+                    "read": 9,
+                    "view": 5
+                },
+                "M40": {
+                    "click": 5,
+                    "read": 20,
+                    "view": 79
+                },
+                "M50": {
+                    "click": 21,
+                    "read": 84,
+                    "view": 84
+                },
+                "M50+": {
+                    "click": 55,
+                    "read": 213,
+                    "view": 213
+                },
+                "M50-": {
+                    "click": 16,
+                    "read": 57,
+                    "view": 146
+                },
+                "M60": {
+                    "click": 24,
+                    "read": 90,
+                    "view": 80
+                },
+                "M70+": {
+                    "click": 10,
+                    "read": 39,
+                    "view": 49
+                },
+                "No aid": {
+                    "click": 118,
+                    "read": 452,
+                    "view": 839
+                },
+                "": {
+                    "click": 101,
+                    "read": 386,
+                    "view": 541
+                }
+            },
+            "b": {
+                "title": "Tittel test , også skal være kjempelang så vi får se hvordan det brekker når det blir enda lenger",
+                "30": {
+                    "click": 6,
+                    "read": 18,
+                    "view": 66
+                },
+                "30-": {
+                    "click": 1,
+                    "read": 4,
+                    "view": 13
+                },
+                "40": {
+                    "click": 12,
+                    "read": 48,
+                    "view": 110
+                },
+                "50": {
+                    "click": 16,
+                    "read": 62,
+                    "view": 143
+                },
+                "50+": {
+                    "click": 45,
+                    "read": 163,
+                    "view": 307
+                },
+                "50-": {
+                    "click": 19,
+                    "read": 70,
+                    "view": 189
+                },
+                "60": {
+                    "click": 14,
+                    "read": 51,
+                    "view": 95
+                },
+                "70+": {
+                    "click": 15,
+                    "read": 50,
+                    "view": 69
+                },
+                "F": {
+                    "click": 10,
+                    "read": 40,
+                    "view": 102
+                },
+                "F30": {
+                    "view": 4
+                },
+                "F30-": {
+                    "view": 3
+                },
+                "F40": {
+                    "click": 2,
+                    "read": 8,
+                    "view": 20
+                },
+                "F50": {
+                    "click": 2,
+                    "read": 8,
+                    "view": 30
+                },
+                "F50+": {
+                    "click": 8,
+                    "read": 32,
+                    "view": 74
+                },
+                "F50-": {
+                    "click": 2,
+                    "read": 8,
+                    "view": 27
+                },
+                "F60": {
+                    "click": 2,
+                    "read": 8,
+                    "view": 19
+                },
+                "F70+": {
+                    "click": 4,
+                    "read": 16,
+                    "view": 25
+                },
+                "M": {
+                    "click": 51,
+                    "read": 181,
+                    "view": 376
+                },
+                "M30": {
+                    "click": 6,
+                    "read": 18,
+                    "view": 56
+                },
+                "M30-": {
+                    "view": 9
+                },
+                "M40": {
+                    "click": 9,
+                    "read": 36,
+                    "view": 83
+                },
+                "M50": {
+                    "click": 14,
+                    "read": 54,
+                    "view": 109
+                },
+                "M50+": {
+                    "click": 36,
+                    "read": 127,
+                    "view": 226
+                },
+                "M50-": {
+                    "click": 15,
+                    "read": 54,
+                    "view": 148
+                },
+                "M60": {
+                    "click": 11,
+                    "read": 39,
+                    "view": 73
+                },
+                "M70+": {
+                    "click": 11,
+                    "read": 34,
+                    "view": 44
+                },
+                "No aid": {
+                    "click": 106,
+                    "read": 399,
+                    "view": 805
+                },
+                "": {
+                    "click": 68,
+                    "read": 249,
+                    "view": 523
+                }
+            },
+            "c": {
+                "title": "Tittel test c",
+                "30": {
+                    "click": 8,
+                    "read": 32,
+                    "view": 69
+                },
+                "30-": {
+                    "view": 8
+                },
+                "40": {
+                    "click": 22,
+                    "read": 81,
+                    "view": 112
+                },
+                "50": {
+                    "click": 16,
+                    "read": 64,
+                    "view": 131
+                },
+                "50+": {
+                    "click": 44,
+                    "read": 159,
+                    "view": 307
+                },
+                "50-": {
+                    "click": 30,
+                    "read": 113,
+                    "view": 189
+                },
+                "60": {
+                    "click": 20,
+                    "read": 69,
+                    "view": 111
+                },
+                "70+": {
+                    "click": 8,
+                    "read": 26,
+                    "view": 65
+                },
+                "F": {
+                    "click": 12,
+                    "read": 47,
+                    "view": 123
+                },
+                "F30": {
+                    "view": 13
+                },
+                "F30-": {
+                    "view": 2
+                },
+                "F40": {
+                    "click": 4,
+                    "read": 16,
+                    "view": 32
+                },
+                "F50": {
+                    "click": 3,
+                    "read": 12,
+                    "view": 31
+                },
+                "F50+": {
+                    "click": 7,
+                    "read": 28,
+                    "view": 71
+                },
+                "F50-": {
+                    "click": 4,
+                    "read": 16,
+                    "view": 47
+                },
+                "F60": {
+                    "click": 3,
+                    "read": 12,
+                    "view": 23
+                },
+                "F70+": {
+                    "click": 1,
+                    "read": 4,
+                    "view": 17
+                },
+                "M": {
+                    "click": 62,
+                    "read": 224,
+                    "view": 376
+                },
+                "M30": {
+                    "click": 8,
+                    "read": 32,
+                    "view": 55
+                },
+                "M30-": {
+                    "view": 6
+                },
+                "M40": {
+                    "click": 18,
+                    "read": 65,
+                    "view": 79
+                },
+                "M50": {
+                    "click": 12,
+                    "read": 48,
+                    "view": 98
+                },
+                "M50+": {
+                    "click": 36,
+                    "read": 127,
+                    "view": 227
+                },
+                "M50-": {
+                    "click": 26,
+                    "read": 97,
+                    "view": 140
+                },
+                "M60": {
+                    "click": 17,
+                    "read": 57,
+                    "view": 85
+                },
+                "M70+": {
+                    "click": 7,
+                    "read": 22,
+                    "view": 44
+                },
+                "No aid": {
+                    "click": 105,
+                    "read": 385,
+                    "view": 838
+                },
+                "": {
+                    "click": 82,
+                    "read": 303,
+                    "view": 550
+                }
+            },
+            "content_id": "5-95-971279",
+            "d": {
+                "title": "Tittel test d",
+                "30": {
+                    "click": 4,
+                    "read": 16,
+                    "view": 66
+                },
+                "30-": {
+                    "view": 11
+                },
+                "40": {
+                    "click": 7,
+                    "read": 32,
+                    "view": 115
+                },
+                "50": {
+                    "click": 20,
+                    "read": 80,
+                    "view": 176
+                },
+                "50+": {
+                    "click": 50,
+                    "read": 191,
+                    "view": 351
+                },
+                "50-": {
+                    "click": 11,
+                    "read": 48,
+                    "view": 192
+                },
+                "60": {
+                    "click": 16,
+                    "read": 58,
+                    "view": 111
+                },
+                "70+": {
+                    "click": 14,
+                    "read": 53,
+                    "view": 64
+                },
+                "F": {
+                    "click": 17,
+                    "read": 68,
+                    "view": 126
+                },
+                "F30": {
+                    "click": 1,
+                    "read": 4,
+                    "view": 9
+                },
+                "F30-": {
+                    "view": 5
+                },
+                "F40": {
+                    "click": 2,
+                    "read": 8,
+                    "view": 34
+                },
+                "F50": {
+                    "click": 4,
+                    "read": 20,
+                    "view": 38
+                },
+                "F50+": {
+                    "click": 14,
+                    "read": 56,
+                    "view": 77
+                },
+                "F50-": {
+                    "click": 3,
+                    "read": 12,
+                    "view": 48
+                },
+                "F60": {
+                    "click": 8,
+                    "read": 28,
+                    "view": 28
+                },
+                "F70+": {
+                    "click": 2,
+                    "read": 8,
+                    "view": 11
+                },
+                "M": {
+                    "click": 43,
+                    "read": 171,
+                    "view": 412
+                },
+                "M30": {
+                    "click": 3,
+                    "read": 12,
+                    "view": 56
+                },
+                "M30-": {
+                    "view": 6
+                },
+                "M40": {
+                    "click": 5,
+                    "read": 24,
+                    "view": 74
+                },
+                "M50": {
+                    "click": 15,
+                    "read": 60,
+                    "view": 133
+                },
+                "M50+": {
+                    "click": 34,
+                    "read": 131,
+                    "view": 268
+                },
+                "M50-": {
+                    "click": 8,
+                    "read": 36,
+                    "view": 136
+                },
+                "M60": {
+                    "click": 7,
+                    "read": 26,
+                    "view": 82
+                },
+                "M70+": {
+                    "click": 12,
+                    "read": 45,
+                    "view": 53
+                },
+                "No aid": {
+                    "click": 66,
+                    "read": 233,
+                    "view": 838
+                },
+                "": {
+                    "click": 64,
+                    "read": 251,
+                    "view": 593
+                }
+            },
+            "e": {
+                "title": "Tittel test d",
+                "30": {
+                    "click": 3,
+                    "read": 12,
+                    "view": 52
+                },
+                "30-": {
+                    "click": 1,
+                    "read": 4,
+                    "view": 9
+                },
+                "40": {
+                    "click": 9,
+                    "read": 39,
+                    "view": 117
+                },
+                "50": {
+                    "click": 16,
+                    "read": 58,
+                    "view": 133
+                },
+                "50+": {
+                    "click": 39,
+                    "read": 149,
+                    "view": 264
+                },
+                "50-": {
+                    "click": 13,
+                    "read": 55,
+                    "view": 178
+                },
+                "60": {
+                    "click": 14,
+                    "read": 55,
+                    "view": 80
+                },
+                "70+": {
+                    "click": 9,
+                    "read": 36,
+                    "view": 51
+                },
+                "F": {
+                    "click": 8,
+                    "read": 32,
+                    "view": 91
+                },
+                "F30": {
+                    "click": 1,
+                    "read": 4,
+                    "view": 10
+                },
+                "F30-": {
+                    "view": 1
+                },
+                "F40": {
+                    "view": 25
+                },
+                "F50": {
+                    "click": 2,
+                    "read": 8,
+                    "view": 26
+                },
+                "F50+": {
+                    "click": 7,
+                    "read": 28,
+                    "view": 55
+                },
+                "F50-": {
+                    "click": 1,
+                    "read": 4,
+                    "view": 36
+                },
+                "F60": {
+                    "click": 4,
+                    "read": 16,
+                    "view": 19
+                },
+                "F70+": {
+                    "click": 1,
+                    "read": 4,
+                    "view": 10
+                },
+                "M": {
+                    "click": 42,
+                    "read": 164,
+                    "view": 347
+                },
+                "M30": {
+                    "click": 2,
+                    "read": 8,
+                    "view": 41
+                },
+                "M30-": {
+                    "click": 1,
+                    "read": 4,
+                    "view": 8
+                },
+                "M40": {
+                    "click": 8,
+                    "read": 35,
+                    "view": 88
+                },
+                "M50": {
+                    "click": 13,
+                    "read": 46,
+                    "view": 104
+                },
+                "M50+": {
+                    "click": 31,
+                    "read": 117,
+                    "view": 205
+                },
+                "M50-": {
+                    "click": 11,
+                    "read": 47,
+                    "view": 137
+                },
+                "M60": {
+                    "click": 10,
+                    "read": 39,
+                    "view": 60
+                },
+                "M70+": {
+                    "click": 8,
+                    "read": 32,
+                    "view": 41
+                },
+                "No aid": {
+                    "click": 52,
+                    "read": 192,
+                    "view": 800
+                },
+                "": {
+                    "click": 54,
+                    "read": 214,
+                    "view": 467
+                }
+            }
+        }
+    }
+}

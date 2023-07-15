@@ -1,0 +1,111 @@
+{
+    "maximinus": {
+        "connections": {},
+        "sources": {},
+        "metric_groups": [
+            {
+                "metric_group": "aid",
+                "metrics": [
+                    "n_aid",
+                    "n_aid_h",
+                    "n_aid_cust",
+                    "n_aid_cust_h",
+                    "n_abo",
+                    "n_abo_cancel",
+                    "n_abo_change",
+                    "n_abo_upgrade",
+                    "n_abo_DIGITAL_PLUSSALT",
+                    "n_abo_cancel_DIGITAL_PLUSSALT"
+                ]
+            },
+            {
+                "metric_group": "att",
+                "metrics": [
+                    "n_att_0",
+                    "n_att_1",
+                    "n_att_2",
+                    "n_att_3",
+                    "n_att_4",
+                    "n_att_5",
+                    "n_att_6",
+                    "n_att_7",
+                    "n_att_8",
+                    "n_att_9"
+                ]
+            },
+            {
+                "metric_group": "cust_eng",
+                "metrics": [
+                    "n_cust_eng0",
+                    "n_cust_eng1",
+                    "n_cust_eng2",
+                    "n_cust_eng3",
+                    "n_cust_eng4",
+                    "n_cust_eng5",
+                    "n_cust_eng6",
+                    "n_cust_eng7",
+                    "n_cust_eng8",
+                    "n_cust_eng9"
+                ]
+            },
+            {
+                "metric_group": "eng",
+                "metrics": [
+                    "n_eng0",
+                    "n_eng1",
+                    "n_eng2",
+                    "n_eng3",
+                    "n_eng4",
+                    "n_eng5",
+                    "n_eng6",
+                    "n_eng7",
+                    "n_eng8",
+                    "n_eng9"
+                ]
+            },
+            {
+                "metric_group": "cust_eng_h",
+                "metrics": [
+                    "n_cust_eng0_h",
+                    "n_cust_eng1_h",
+                    "n_cust_eng2_h",
+                    "n_cust_eng3_h",
+                    "n_cust_eng4_h",
+                    "n_cust_eng5_h",
+                    "n_cust_eng6_h",
+                    "n_cust_eng7_h",
+                    "n_cust_eng8_h",
+                    "n_cust_eng9_h"
+                ]
+            },
+            {
+                "metric_group": "cust_eng_in_h",
+                "metrics": [
+                    "n_cust_eng0_in_h",
+                    "n_cust_eng1_in_h",
+                    "n_cust_eng2_in_h",
+                    "n_cust_eng3_in_h",
+                    "n_cust_eng4_in_h",
+                    "n_cust_eng5_in_h",
+                    "n_cust_eng6_in_h",
+                    "n_cust_eng7_in_h",
+                    "n_cust_eng8_in_h",
+                    "n_cust_eng9_in_h"
+                ]
+            }
+        ],
+        "card_types": [
+            {
+                "card_type": "site_metrics",
+                "metric_groups": [
+                    "aid",
+                    "att",
+                    "cust_eng",
+                    "cust_eng_h",
+                    "cust_eng_in_h",
+                    "eng"
+                ]
+            }
+        ]
+    }
+}

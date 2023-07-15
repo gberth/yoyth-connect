@@ -1,0 +1,385 @@
+{
+    "testcontent": {
+        "card": {
+            "group_list": [
+                "all_local",
+                "all_sites",
+                "amedia_local",
+                "amedia_owned",
+                "class_vei4",
+                "mainsite_ostlen",
+                "region_romeri"
+            ],
+            "groups": {
+                "all_local": {
+                    "ctnt_10s_cust": 1350,
+                    "ctnt_pluss": 0,
+                    "n": 2127,
+                    "t": 75066
+                },
+                "all_sites": {
+                    "ctnt_10s_cust": 1350,
+                    "ctnt_pluss": 0,
+                    "n": 2127,
+                    "t": 75066
+                },
+                "amedia_local": {
+                    "ctnt_10s_cust": 1350,
+                    "ctnt_pluss": 0,
+                    "n": 2127,
+                    "t": 75066
+                },
+                "amedia_owned": {
+                    "ctnt_10s_cust": 1350,
+                    "ctnt_pluss": 0,
+                    "n": 2127,
+                    "t": 75066
+                },
+                "class_vei4": {
+                    "ctnt_10s_cust": 1350,
+                    "ctnt_pluss": 0,
+                    "n": 2127,
+                    "t": 75066
+                },
+                "mainsite_ostlen": {
+                    "ctnt_10s_cust": 1350,
+                    "ctnt_pluss": 0,
+                    "n": 2127,
+                    "t": 75066
+                },
+                "region_romeri": {
+                    "ctnt_10s_cust": 1350,
+                    "ctnt_pluss": 0,
+                    "n": 2127,
+                    "t": 75066
+                }
+            },
+            "n_ctnt_10s": 1551,
+            "n_ctnt_10s_cust": 1350,
+            "n_ctnt_pluss": 0,
+            "n_story_h": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                486,
+                938,
+                436,
+                212,
+                55,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "n_story_p_h": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "n_total": 2127,
+            "n_total_h": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                486,
+                938,
+                436,
+                212,
+                55,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "segments": {
+                "30": {
+                    "ctnt_10s_cust": 88,
+                    "ctnt_pluss": 0,
+                    "n": 153,
+                    "t": 6165
+                },
+                "40": {
+                    "ctnt_10s_cust": 179,
+                    "ctnt_pluss": 0,
+                    "n": 282,
+                    "t": 10109
+                },
+                "50": {
+                    "ctnt_10s_cust": 303,
+                    "ctnt_pluss": 0,
+                    "n": 489,
+                    "t": 16471
+                },
+                "60": {
+                    "ctnt_10s_cust": 330,
+                    "ctnt_pluss": 0,
+                    "n": 552,
+                    "t": 17122
+                },
+                "30-": {
+                    "ctnt_10s_cust": 26,
+                    "ctnt_pluss": 0,
+                    "n": 43,
+                    "t": 1095
+                },
+                "50+": {
+                    "ctnt_10s_cust": 1035,
+                    "ctnt_pluss": 0,
+                    "n": 1608,
+                    "t": 56626
+                },
+                "50-": {
+                    "ctnt_10s_cust": 293,
+                    "ctnt_pluss": 0,
+                    "n": 478,
+                    "t": 17369
+                },
+                "70+": {
+                    "ctnt_10s_cust": 402,
+                    "ctnt_pluss": 0,
+                    "n": 567,
+                    "t": 23033
+                },
+                "ANSATT": {
+                    "ctnt_10s_cust": 3,
+                    "ctnt_pluss": 0,
+                    "n": 7,
+                    "t": 163
+                },
+                "F": {
+                    "ctnt_10s_cust": 604,
+                    "ctnt_pluss": 0,
+                    "n": 967,
+                    "t": 30692
+                },
+                "F30": {
+                    "ctnt_10s_cust": 46,
+                    "ctnt_pluss": 0,
+                    "n": 75,
+                    "t": 3210
+                },
+                "F30-": {
+                    "ctnt_10s_cust": 10,
+                    "ctnt_pluss": 0,
+                    "n": 18,
+                    "t": 456
+                },
+                "F40": {
+                    "ctnt_10s_cust": 94,
+                    "ctnt_pluss": 0,
+                    "n": 152,
+                    "t": 4755
+                },
+                "F50": {
+                    "ctnt_10s_cust": 144,
+                    "ctnt_pluss": 0,
+                    "n": 230,
+                    "t": 6415
+                },
+                "F50+": {
+                    "ctnt_10s_cust": 448,
+                    "ctnt_pluss": 0,
+                    "n": 709,
+                    "t": 21905
+                },
+                "F50-": {
+                    "ctnt_10s_cust": 150,
+                    "ctnt_pluss": 0,
+                    "n": 245,
+                    "t": 8421
+                },
+                "F60": {
+                    "ctnt_10s_cust": 158,
+                    "ctnt_pluss": 0,
+                    "n": 264,
+                    "t": 7762
+                },
+                "F70+": {
+                    "ctnt_10s_cust": 146,
+                    "ctnt_pluss": 0,
+                    "n": 215,
+                    "t": 7728
+                },
+                "M": {
+                    "ctnt_10s_cust": 723,
+                    "ctnt_pluss": 0,
+                    "n": 1120,
+                    "t": 42775
+                },
+                "M30": {
+                    "ctnt_10s_cust": 42,
+                    "ctnt_pluss": 0,
+                    "n": 78,
+                    "t": 2955
+                },
+                "M30-": {
+                    "ctnt_10s_cust": 16,
+                    "ctnt_pluss": 0,
+                    "n": 24,
+                    "t": 638
+                },
+                "M40": {
+                    "ctnt_10s_cust": 83,
+                    "ctnt_pluss": 0,
+                    "n": 127,
+                    "t": 5185
+                },
+                "M50": {
+                    "ctnt_10s_cust": 154,
+                    "ctnt_pluss": 0,
+                    "n": 253,
+                    "t": 9637
+                },
+                "M50+": {
+                    "ctnt_10s_cust": 572,
+                    "ctnt_pluss": 0,
+                    "n": 879,
+                    "t": 33683
+                },
+                "M50-": {
+                    "ctnt_10s_cust": 141,
+                    "ctnt_pluss": 0,
+                    "n": 229,
+                    "t": 8778
+                },
+                "M60": {
+                    "ctnt_10s_cust": 167,
+                    "ctnt_pluss": 0,
+                    "n": 282,
+                    "t": 9008
+                },
+                "M70+": {
+                    "ctnt_10s_cust": 251,
+                    "ctnt_pluss": 0,
+                    "n": 344,
+                    "t": 15038
+                }
+            },
+            "t_story_h": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                16752,
+                34045,
+                15211,
+                7675,
+                1383,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "t_story_p_h": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "t_total": 75066,
+            "t_total_h": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                16752,
+                34045,
+                15211,
+                7675,
+                1383,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "url": "https://www.ostlendingen.no/norges-bank-kommer-med-n-stor-advarsel/s/5-69-1486946"
+        }
+    }
+}
