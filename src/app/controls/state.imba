@@ -54,6 +54,8 @@ let config =
 			"send_to_subscriber": actions.set_zip_response,
 			"login_anonymous": actions.set_login_anonymous,
 			"login": actions.set_login,
+			"anonymous_login": actions.setAck,
+			"ACK": actions.setAck,
 		}
 def current_date 
 	return state.current_date

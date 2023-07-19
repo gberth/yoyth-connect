@@ -54,6 +54,16 @@ def signInGoogle
 
 def setAck msg
 	console.log msg
+	if msg.payload and msg.payload.data and msg.payload.data.photo
+		const row_raw = Buffer.from(msg.payload.data.photo, "base64")
+		const row_unzipped = pako.inflate(row_raw)
+		const row_string = new TextDecoder().decode(row_unzipped)
+		const card_obj = JSON.parse(row_string)
+		console.log(row_raw.length)
+		console.log(row_unzipped.length)
+		console.log(row_string.length)
+		console.dir(card_obj)
+		localStorage.setItem("gbtest", card_obj)
 
 export def set_value_in_state(statevars, newvalue)
 	def copy_from(fromobj, toobj)
@@ -316,9 +326,6 @@ def init_user
 			})
 		command.identity_data.access_token = token
 		sendCommand(command)
-
-	if not state.signedIn
-		return
 
 	for own event, action of config.events
 		ic_dispatcher.route(event, action)
