@@ -24,6 +24,10 @@ tag app
 				<dashboards>
 			else
 				<a> "not logged in"
+			if state.photo
+				<div[mt:500px rotate:90deg]>
+					<img width=800 height=800 src="data:image/jpg;base64,"+state.photo>
+				
 			if state.menuOpen?
 				<ic-menu items=state.menu.menu_items>
 

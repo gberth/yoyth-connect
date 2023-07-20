@@ -59,11 +59,13 @@ def setAck msg
 		const row_unzipped = pako.inflate(row_raw)
 		const row_string = new TextDecoder().decode(row_unzipped)
 		const card_obj = JSON.parse(row_string)
+
+		const photo = Buffer.from(card_obj).toString("base64")
 		console.log(row_raw.length)
 		console.log(row_unzipped.length)
 		console.log(row_string.length)
-		console.dir(card_obj)
-		localStorage.setItem("gbtest", card_obj)
+		localStorage.setItem("gbtest", JSON.stringify(photo))
+		state.photo = photo
 
 export def set_value_in_state(statevars, newvalue)
 	def copy_from(fromobj, toobj)
@@ -292,11 +294,20 @@ def init
 		script.src = "https://accounts.google.com/gsi/client";
 		script.async = true;
 		document.body.appendChild(script);
-
-	createScript()
+	
 	init_user()
+	if not state.test
+		createScript()
 
 def init_user
+	if 'localhost' in window.location.href
+		localhost = true
+	const url = window.location.href.split("/")
+	if url.length > 3 and url[url.length - 1] == "test_components"
+		initiate_test_env()
+		imba.commit()
+		return
+
 	const token = localStorage.getItem(GOOGLE_USER_TOKEN_KEY);
 	if token
 		state.access_token = token
@@ -308,13 +319,6 @@ def init_user
 		else
 			state.google_user = user
 			state.signedIn = true
-	if 'localhost' in window.location.href
-		localhost = true
-	const url = window.location.href.split("/")
-	if url.length > 3 and url[url.length - 1] == "test_components"
-		initiate_test_env()
-		imba.commit()
-		return
 
 	for command in config.commands
 		if not state.sockets[command.wsid]
@@ -360,17 +364,7 @@ def check_for_resubscribe()
 
 def initiate_test_env
 	state.test = true
-	state.metrics = test_metrics
-	state.abtests = test_abtest
-	state.contents = test_content
-	for own source_id, source_data of test_sources
-		state.source[source_id] = new source(source_id, source_data)
-	state.user = new user(test_user.email, test_user)
-	console.log(state)
-	state.current_date = new Date("2023-01-30")
-	for d in state.dashboards
-		for e in d.elements
-			e.notify("2023-01-30 08:20:00.00000")
+	state.photo =JSON.parse(localStorage.getItem("gbtest"))
 
 export def create_socket(parm)
 	state.sockets[parm.id] = socket().initialize({

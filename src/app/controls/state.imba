@@ -19,6 +19,7 @@ let state =
 	dashboards: []
 	user: {}
 	last_ts: {}
+	photo: ""
 	subscriptions_on_ws: {}
 	cardsubscriptions: {}
 	sitekey: ""
