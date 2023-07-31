@@ -64,8 +64,13 @@ def setAck msg
 		console.log(row_raw.length)
 		console.log(row_unzipped.length)
 		console.log(row_string.length)
-		localStorage.setItem("gbtest", JSON.stringify(photo))
+		localStorage.setItem("gbphoto", JSON.stringify(photo))
+		localStorage.setItem("gbstatus", JSON.stringify(msg.payload.data.camera_status, null, "\t"))
+		localStorage.setItem("gbid", msg.payload.data.id)
 		state.photo = photo
+		state.status = msg.payload.data.camera_status
+		state.photo_id = msg.payload.data.id
+		imba.commit()
 
 export def set_value_in_state(statevars, newvalue)
 	def copy_from(fromobj, toobj)
@@ -364,7 +369,9 @@ def check_for_resubscribe()
 
 def initiate_test_env
 	state.test = true
-	state.photo =JSON.parse(localStorage.getItem("gbtest"))
+	state.photo =JSON.parse(localStorage.getItem("gbphoto"))
+	state.status = localStorage.getItem("gbstatus")
+	state.photo_id = localStorage.getItem("gbid")
 
 export def create_socket(parm)
 	state.sockets[parm.id] = socket().initialize({

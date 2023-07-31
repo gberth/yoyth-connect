@@ -20,6 +20,8 @@ let state =
 	user: {}
 	last_ts: {}
 	photo: ""
+	status: ""
+	photo_id: ""
 	subscriptions_on_ws: {}
 	cardsubscriptions: {}
 	sitekey: ""

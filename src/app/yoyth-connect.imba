@@ -25,9 +25,12 @@ tag app
 			else
 				<a> "not logged in"
 			if state.photo
-				<div[mt:500px rotate:90deg]>
-					<img width=800 height=800 src="data:image/jpg;base64,"+state.photo>
-				
+				<div[ml:0px mt:300px rotate:90deg]>
+					<img width=800 height=1200 src="data:image/jpg;base64,"+state.photo>
+				<div>
+					<a> state.photo_id
+					<a> JSON.stringify(state.status)
+
 			if state.menuOpen?
 				<ic-menu items=state.menu.menu_items>
 
