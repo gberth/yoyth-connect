@@ -17,7 +17,7 @@ const port = process.env.PORT or 3000
 # Express works like usual, so we can allow JSON in the POST request:
 const jsonBody = express.json({ limit: '1kb' })
 
-app.use('/api/yoyth-connect/v1/', express.static(path.join(__dirname,'../dist/public')))
+app.use('/v1/', express.static(path.join(__dirname,'../dist/public')))
 
 app.post('/increment', jsonBody) do(req,res)
 	# A good exercise here is to add validation for the request body.
