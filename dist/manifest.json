@@ -1,0 +1,14 @@
+{
+  "entry:src/app/yoyth-connect.imba?web": {
+    "url": "./assets/yoyth-connect.4IANCBBR.js",
+    "path": "/home/gunnar/yoyth/yoyth-connect/dist/public/assets/yoyth-connect.4IANCBBR.js"
+  },
+  "*?css": {
+    "url": "./assets/index.W0VEV4CJ.css",
+    "path": "/home/gunnar/yoyth/yoyth-connect/dist/public/assets/index.W0VEV4CJ.css"
+  },
+  "./assets/yoyth-connect.4IANCBBR.js": {},
+  "./assets/yoyth-connect.ANVXJEN5.css": {},
+  "./assets/index.W0VEV4CJ.css": {},
+  "main": "server.js"
+}
