@@ -23,5 +23,5 @@ var re=Object.create;var D=Object.defineProperty;var se=Object.getOwnPropertyDes
     <script type="module" src='ASSET_REF_1'><\/script>
 </body>
 
-</html>`,fe);var O={count:0},y=(0,x.default)(),de=process.env.PORT||3e3,me=x.default.json({limit:"1kb"});y.use("/api/yoyth-connect/v1/",x.default.static(ee.default.join((0,$.dirname)((0,$.resolve)("src/server.imba")),"../dist/public")));y.post("/increment",me,function(s,e){return O.count+=s.body.increment,e.send({count:O.count})});y.get("/count",function(s,e){return e.send({count:O.count})});y.get("/yoyth-connect/apiadmin/ping",function(s,e){return e.send({ping:"OK"})});y.get(/.*/,function(s,e){return s.accepts(["image/*","html"])!="html"?e.sendStatus(404):e.send(X.body)});V(y.listen(de));
+</html>`,fe);var O={count:0},y=(0,x.default)(),de=process.env.PORT||3e3,me=x.default.json({limit:"1kb"});y.use("/v1/",x.default.static(ee.default.join((0,$.dirname)((0,$.resolve)("src/server.imba")),"../dist/public")));y.post("/increment",me,function(s,e){return O.count+=s.body.increment,e.send({count:O.count})});y.get("/count",function(s,e){return e.send({count:O.count})});y.get("/yoyth-connect/apiadmin/ping",function(s,e){return e.send({ping:"OK"})});y.get(/.*/,function(s,e){return s.accepts(["image/*","html"])!="html"?e.sendStatus(404):e.send(X.body)});V(y.listen(de));
 //__FOOT__
