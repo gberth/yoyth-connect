@@ -341,7 +341,23 @@ def init_user
 
 	setTimeout(&,60000) do
 		check_for_resubscribe()
+	setInterval(&,15000) do
+		ping_all_sockets()
 	imba.commit()
+
+export def reciev_ping()
+	console.log("ping received")
+
+def ping_all_sockets()
+	console.log("ping")
+	for own socketid, socket of state.sockets
+		console.log(socketid)
+		sendCommand({
+			type: 'ping',
+			request_type: "ping"
+			payload: "ping"
+			wsid: socketid
+		})
 
 def check_for_resubscribe()
 	if localhost

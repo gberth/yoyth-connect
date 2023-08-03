@@ -54,9 +54,10 @@ let config =
 			"weeks": actions.get_metric_data("weeks"),
 			"months": actions.get_metric_data("months"),
 			"years": actions.get_metric_data("years"),
-			"send_to_subscriber": actions.set_zip_response,
+			"send_to_subscriber": actions.setAck,
 			"login_anonymous": actions.set_login_anonymous,
 			"login": actions.set_login,
+			"ping": actions.receive_ping,
 			"anonymous_login": actions.setAck,
 			"ACK": actions.setAck,
 		}
