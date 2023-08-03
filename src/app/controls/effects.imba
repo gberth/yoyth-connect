@@ -11,7 +11,6 @@ def dispatcher
 			MsgtypeRouting[type] = action;
 		onMessage: do(msg)
 			if msg.message_data and msg.message_data.type
-				console.dir(MsgtypeRouting)
 				console.log(msg.message_data.type)
 				if MsgtypeRouting[msg.message_data.type] 
 					MsgtypeRouting[msg.message_data.type](msg);

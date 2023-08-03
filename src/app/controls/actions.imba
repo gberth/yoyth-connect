@@ -54,7 +54,9 @@ def signInGoogle
 
 def setAck msg
 	console.log msg
-	if msg.payload and msg.payload.data and msg.payload.data.photo
+	if msg.payload == "ping"
+		receive_ping(msg)
+	elif msg.payload and msg.payload.data and msg.payload.data.photo
 		const row_raw = Buffer.from(msg.payload.data.photo, "base64")
 		const row_unzipped = pako.inflate(row_raw)
 		const row_string = new TextDecoder().decode(row_unzipped)
@@ -345,7 +347,7 @@ def init_user
 		ping_all_sockets()
 	imba.commit()
 
-export def reciev_ping()
+export def receive_ping()
 	console.log("ping received")
 
 def ping_all_sockets()
@@ -353,7 +355,7 @@ def ping_all_sockets()
 	for own socketid, socket of state.sockets
 		console.log(socketid)
 		sendCommand({
-			type: 'ping',
+			type: 'ping'
 			request_type: "ping"
 			payload: "ping"
 			wsid: socketid
