@@ -15,7 +15,8 @@ tag app
 		bgc:cooler2  p:10px rd:lg
 		d:flex jc:left h:55px
 		shadow:0 5px 15px black/20
-	css .rotate rotate:90deg 
+
+	css .rotate rotate:90deg
 
 	<self>
 		<global>
@@ -26,11 +27,11 @@ tag app
 			else
 				<a> "not logged in"
 			if state.photo
-				<div[ml:0px]>
-					<img.rotate width=900 height=1200 src="data:image/jpg;base64,"+state.photo>
+				<div[ml:150px]>
+					<img.rotate width=450 height=600 src="data:image/jpg;base64,"+state.photo>
 				<div>
-					<a> state.photo_id
-					<a> JSON.stringify(state.status)
+					<p> state.photo_id
+					<p> JSON.stringify(state.status)
 
 			if state.menuOpen?
 				<ic-menu items=state.menu.menu_items>
