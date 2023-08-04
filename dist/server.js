@@ -13,7 +13,7 @@ var re=Object.create;var D=Object.defineProperty;var se=Object.getOwnPropertyDes
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300" rel="stylesheet" />
 
     <title>Yoyth Connect</title>
-    <link rel="icon" type="image/x-icon" href="/publib/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <!-- reference to the client script styles -->
     <link rel='stylesheet' href='ASSET_REF_0'>
 </head>
