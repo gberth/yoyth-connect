@@ -61,10 +61,10 @@ def socket
 			return this
 		reinit: do
 			this.initialize(_options)
-		sendmsg: do(data)
+		sendmsg: do(data, toberesent = true)
 			def send
-				if _options.resend and not _options.restarted
-					if data not in _options.resend_msgs 
+				if _options.resend and not _options.restarted 
+					if data not in _options.resend_msgs  
 						_options.resend_msgs.push(data)
 				if _ws.readyState === 1
 					try
@@ -90,7 +90,7 @@ def socket
 						_options.onStatusChange({ id: _options.id, socketStatus: 'error', readystate: _ws.readyState })
 					return false
 			if not send()
-				_options.onStatusChange(_options.id, 'error')
+				_options.onStatusChange({ id: _options.id, socketStatus: 'error', readystate: _ws.readyState })
 		}
 
 let ic_dispatcher = dispatcher()

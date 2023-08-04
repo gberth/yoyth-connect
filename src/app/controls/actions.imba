@@ -272,11 +272,13 @@ export def get_metric_data(period)
 
 def onSocketStatusChange(wsid)
 	return do(data)
-		# console.log("socket change", wsid)
-		# console.log(data)
-		# console.log(data.socket)
+		if 'localhost' in window.location.href
+			console.log("socket change", wsid)
+			console.log(data)
+			console.log(data.socket)
 		if data.socket_status === "close" or data.socket_status === "error"
 			if data.socket.reconnect
+				console.log("reconnect after " + data.socket_status)
 				create_socket({
 					...data.socket
 				})
@@ -332,7 +334,7 @@ def init_user
 			create_socket({
 				id: command.wsid
 				host: config.connection[command.wsid].route
-				resend_msgs: config.connection[command.wsid].resend_msgs
+				resend: config.connection[command.wsid].resend
 				onmessage: ic_dispatcher.onMessage
 				onStatusChange: onSocketStatusChange(command.wsid)
 			})
@@ -365,18 +367,18 @@ def ping_all_sockets()
 def check_for_resubscribe()
 	if localhost
 		console.log("state on resub check", state)
-	const token = localStorage.getItem(GOOGLE_USER_TOKEN_KEY);
-	const user = await getUserInfo(token);
-	if not user
-		signOutGoogle()
-		return
+	# const token = localStorage.getItem(GOOGLE_USER_TOKEN_KEY);
+	# const user = await getUserInfo(token);
+	# if not user
+	# 	signOutGoogle()
+	# 	return
 
 	for own source, sourcesubs of state.subscriptions_on_ws
 		for own msgid, msgdata of sourcesubs.msgs
 			if Date.now() - msgdata.lastts > 300000 or state.new_date?
 				console.log("resend sub", msgdata.cmd)
 				msgdata.lastts = Date.now()
-				state.sockets[state.requests[msgid].wsid].sendmsg(msgdata.cmd)
+				state.sockets[state.requests[msgid].wsid].sendmsg(msgdata.cmd, false)
 	if state.new_date?
 		state.new_date? = false
 		state.abtests = {}
@@ -439,7 +441,7 @@ export def sendCommand(send)
 			state.subscriptions_on_ws[send.wsid] = {msgs: {}}
 		state.subscriptions_on_ws[send.wsid].msgs[msgid] = {lastts: Date.now(), cmd: senddata}
 
-	state.sockets[send.wsid].sendmsg(senddata)
+	state.sockets[send.wsid].sendmsg(senddata, send.type != "ping")
 
 def set_sources(msg)
 	for own sourceid, source_data of msg.payload
