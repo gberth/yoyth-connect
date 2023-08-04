@@ -275,7 +275,7 @@ def onSocketStatusChange(wsid)
 		# console.log("socket change", wsid)
 		# console.log(data)
 		# console.log(data.socket)
-		if data.socket_status === "close"
+		if data.socket_status === "close" or data.socket_status === "error"
 			if data.socket.reconnect
 				create_socket({
 					...data.socket
