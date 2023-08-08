@@ -1,13 +1,13 @@
 {
   "entry:src/app/yoyth-connect.imba?web": {
-    "url": "./assets/yoyth-connect.NM2CM3J6.js",
-    "path": "/home/gunnar/yoyth/yoyth-connect/dist/public/assets/yoyth-connect.NM2CM3J6.js"
+    "url": "./assets/yoyth-connect.VTSUTHS3.js",
+    "path": "/home/gunnar/yoyth/yoyth-connect/dist/public/assets/yoyth-connect.VTSUTHS3.js"
   },
   "*?css": {
     "url": "./assets/index.W0VEV4CJ.css",
     "path": "/home/gunnar/yoyth/yoyth-connect/dist/public/assets/index.W0VEV4CJ.css"
   },
-  "./assets/yoyth-connect.NM2CM3J6.js": {},
+  "./assets/yoyth-connect.VTSUTHS3.js": {},
   "./assets/yoyth-connect.ANVXJEN5.css": {},
   "./assets/index.W0VEV4CJ.css": {},
   "main": "server.js"

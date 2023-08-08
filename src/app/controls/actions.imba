@@ -333,8 +333,9 @@ def init_user
 		if not state.sockets[command.wsid]
 			create_socket({
 				id: command.wsid
-				host: config.connection[command.wsid].route
+				host: config.connection[command.wsid].url
 				resend: config.connection[command.wsid].resend
+				reconnect: config.connection[command.wsid].reconnect
 				onmessage: ic_dispatcher.onMessage
 				onStatusChange: onSocketStatusChange(command.wsid)
 			})
