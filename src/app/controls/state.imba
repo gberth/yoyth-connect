@@ -36,6 +36,7 @@ let config =
 		config: 
 			route: 'wss://y0y7h.herokuapp.com'
 			resend: true
+			reconnect: true
 	commands:
 		[
 			{

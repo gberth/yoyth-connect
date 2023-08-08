@@ -64,7 +64,7 @@ def socket
 		sendmsg: do(data, toberesent = true)
 			def send
 				if _options.resend and not _options.restarted 
-					if data not in _options.resend_msgs  
+					if data not in _options.resend_msgs and toberesent
 						_options.resend_msgs.push(data)
 				if _ws.readyState === 1
 					try
