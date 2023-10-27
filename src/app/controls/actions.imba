@@ -66,9 +66,6 @@ def setAck msg
 		console.log(row_raw.length)
 		console.log(row_unzipped.length)
 		console.log(row_string.length)
-		localStorage.setItem("gbphoto", JSON.stringify(photo))
-		localStorage.setItem("gbstatus", JSON.stringify(msg.payload.data.camera_status, null, "\t"))
-		localStorage.setItem("gbid", msg.payload.data.id)
 		state.photo = photo
 		state.status = msg.payload.data.camera_status
 		state.photo_id = msg.payload.data.id

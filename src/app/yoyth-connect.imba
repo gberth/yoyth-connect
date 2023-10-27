@@ -16,7 +16,7 @@ tag app
 		d:flex jc:left h:55px
 		shadow:0 5px 15px black/20
 
-	css .rotate rotate:90deg
+	css .rotate rotate:270deg
 
 	<self>
 		<global>
