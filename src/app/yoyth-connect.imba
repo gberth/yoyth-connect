@@ -16,7 +16,7 @@ tag app
 		d:flex jc:left h:55px
 		shadow:0 5px 15px black/20
 
-	css .rotate rotate:270deg
+	css .rotate rotate:0deg
 
 	<self>
 		<global>
@@ -28,7 +28,7 @@ tag app
 				<a> "not logged in"
 			if state.photo
 				<div[ml:150px]>
-					<img.rotate width=450 height=600 src="data:image/jpg;base64,"+state.photo>
+					<img.rotate width=600 height=450 src="data:image/jpg;base64,"+state.photo>
 				<div>
 					<p> state.photo_id
 					<p> JSON.stringify(state.status)
