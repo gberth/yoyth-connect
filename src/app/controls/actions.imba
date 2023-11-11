@@ -273,17 +273,18 @@ def onSocketStatusChange(wsid)
 			console.log("socket change", wsid)
 			console.log(data)
 			console.log(data.socket)
-		if data.socket_status === "close" or data.socket_status === "error"
-			if data.socket.reconnect
-				console.log("reconnect after " + data.socket_status)
-				create_socket({
-					...data.socket
-				})
-		elif data.socket_status === "open"
-			if data.socket.resend_msgs and data.socket.resend_msgs.length > 0
-				for msg in data.socket.resend_msgs
-					console.log("socket resubscribe ", msg)
-					state.sockets[wsid].sendmsg(msg)
+		if data.errors and data.erros < 10
+			if data.socket_status === "close" or data.socket_status === "error"
+				if data.socket.reconnect
+					console.log("reconnect after " + data.socket_status)
+					create_socket({
+						...data.socket
+					})
+			elif data.socket_status === "open"
+				if data.socket.resend_msgs and data.socket.resend_msgs.length > 0
+					for msg in data.socket.resend_msgs
+						console.log("socket resubscribe ", msg)
+						state.sockets[wsid].sendmsg(msg)
 
 def getUserInfo(token)
 	if not token

@@ -55,7 +55,8 @@ def socket
 			_ws.onerror = do(error)
 				console.log("ws error", error)
 				console.dir(error)
-				options.onStatusChange({ socket: _options, socket_status: 'error', error: error })
+				_options.sent += 1
+				options.onStatusChange({ socket: _options, socket_status: 'error', error: error, errors: _options.errors })
 			_ws.onmessage = do(msgin)
 				options.onmessage(JSON.parse(msgin.data));
 			return this
@@ -71,6 +72,7 @@ def socket
 						console.log("sending")
 						_ws.send(JSON.stringify(data))
 						_options.sent += 1
+						_options.errors = 0
 						return true
 					catch error
 						_options.errors += 1
@@ -87,10 +89,10 @@ def socket
 						return false
 				else
 					_ws.onerror do
-						_options.onStatusChange({ id: _options.id, socketStatus: 'error', readystate: _ws.readyState })
+						_options.onStatusChange({ id: _options.id, socketStatus: 'error', readystate: _ws.readyState, errors: _options.errors})
 					return false
 			if not send()
-				_options.onStatusChange({ id: _options.id, socketStatus: 'error', readystate: _ws.readyState })
+				_options.onStatusChange({ id: _options.id, socketStatus: 'error', readystate: _ws.readyState, errors: _options.errors })
 		}
 
 let ic_dispatcher = dispatcher()

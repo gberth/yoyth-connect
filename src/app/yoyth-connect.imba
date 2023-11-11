@@ -20,12 +20,12 @@ tag app
 
 	<self>
 		<global>
-			<div.ic-header>
+			<.ic-header>
 				<ic-header[d:hflex w:100%]>
 			if state.signedIn
 				<dashboards>
 			else
-				<a> "not logged in"
+				<a> "Fjellet er fint"
 			if state.photo
 				<div[ml:150px]>
 					<img.rotate width=600 height=450 src="data:image/jpg;base64,"+state.photo>
