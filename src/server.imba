@@ -18,6 +18,8 @@ const port = process.env.PORT or 3000
 const jsonBody = express.json({ limit: '1kb' })
 
 app.use('/v1/', express.static(path.join(__dirname,'../dist/public')))
+app.use('/vipps/', express.static(path.join(__dirname,'../dist/public')))
+app.use('/yoyth/', express.static(path.join(__dirname,'../dist/public')))
 
 app.post('/increment', jsonBody) do(req,res)
 	# A good exercise here is to add validation for the request body.
