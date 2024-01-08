@@ -11,7 +11,7 @@ global css html
 	ff:sans
 
 tag app
-	css .ic-header tween:all 200ms ease
+	css .yoyth_header tween:all 200ms ease
 		bgc:cooler2  p:10px rd:lg
 		d:flex jc:left h:55px
 		shadow:0 5px 15px black/20
@@ -20,8 +20,8 @@ tag app
 
 	<self>
 		<global>
-			<.ic-header>
-				<ic-header[d:hflex w:100%]>
+			<.yoyth_header>
+				<yoyth_header[d:hflex w:100%]>
 			if state.signedIn
 				<dashboards>
 			else

@@ -3,7 +3,7 @@ import * as actions from "../controls/actions.imba"
 import {state} from "../controls/index.imba"
 import "./menu-button"
 
-tag ic-header
+tag yoyth_header
 
 	css .header-icons d:flex jc:space-between jc:flex-start w:100%
 		button fs:xxs c:cooler4 bgc:transparent px:0
@@ -23,7 +23,6 @@ tag ic-header
 				icon: "keyboard_arrow_right"
 				title: "open menu"
 				click: actions.flipMenuOpen
-
 		if !state.signedIn
 			userStatusButton = 
 				icon: "login"
@@ -44,6 +43,7 @@ tag ic-header
 
 		<div.header-icons>
 			<menu-button button=menubutton>
+			<a> "Org.nr. 921010923"
 		<div.other-icons>
 			<menu-button button=addDashboard>
 			<menu-button button=userStatusButton>
