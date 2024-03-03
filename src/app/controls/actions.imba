@@ -6,6 +6,7 @@ import {dashboard} from "../components/dashboard"
 import {user} from "./user"
 import {board_menu_item} from "../components/board_menu_item"
 import {get_date} from "./helpers"
+import {vipps_client} from "./vipps-client"
 
 # import test_user from "../../test/state.user.json"
 # import test_metrics from "../../test/state.metrics.json"
@@ -295,7 +296,34 @@ def getUserInfo(token)
 		return user
 	return
 
+def getVippsAccessToken(prod=false)
+	if prod 
+		let config = state.vipps_config.prod
+	else
+		let config = state.vipps_config.test
+
+	const response = await fetch(config.url);
+	const user = await response.json();
+	if 'amedia.no' in user.email
+		return user
+	return
+
+def get_config
+	console.log(window.location.href)
+	const response = await fetch(window.location.href+"yoythconfig");
+	console.dir(response)
+	const data = await response.json();
+	console.log("response")
+	console.dir(data)
+
+	for own attr, value of data
+		state[attr] = value
+
+	console.dir(state)
+
 def init
+	await get_config()
+
 	def createScript
 		const script = document.createElement("script");
 		script.src = "https://accounts.google.com/gsi/client";

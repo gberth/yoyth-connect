@@ -1,6 +1,21 @@
 import * as actions from "../controls/actions.imba"
 let state =
 	current_date: new Date()
+	vipps_configs:
+		test:
+			client_id: "a6341dae-0eba-49e8-90f9-504ac4fb05ec"
+			secret: "UT-8Q~2FpZu9mkBWNmA4w8kHNNEYDq8OCQvtWcas"
+			subscription_key: "e487ab7c1fca4e84b1f1a07d2eb9b997"
+			url: "https://apitest.vipps.no/access-management-1.0/access/.well-known/openid-configuration"
+			redirect_url: "https://yoyth-connect.vercel.app/v1/"
+			response: {}
+			endpoints: {}
+		prod:
+			url: "https://api.vipps.no/access-management-1.0/access/.well-known/openid-configuration"
+			response: {}
+			endpoints: {}
+
+	vipps_config: {}
 	new_date?: false
 	test: false
 	menuOpen?: false
@@ -26,43 +41,57 @@ let state =
 	cardsubscriptions: {}
 	sitekey: ""
 	sitekey_login: false
-	vipps_client_id: "..." 
 	redirect_uri: 'https://yoythrest'
-	access_token: ""
-	google_user: {} 
+	vipps_access_token: ""
+	vipps_client_id: "..."
+	server_private_keys: {}
+	google_user: {}
+	types:
+		get_vipps_access_token: 
+			type: "vipps_access_token"
+			connection: "yoyth"
 
 let config = 
-	connection:
-		config: 
-			url: 'wss://y0y7h.herokuapp.com'
+	connections:
+		yoyth: 
+			url: "YOYTHWSADDRESS"
 			resend: true
 			reconnect: true
+			connect: true
+			server: "yoythtest"
+			create_keys: true
+			type: "user_login"
+			payload: 
+				yoyth_login_identity: "yc-anonymous"
+				yoyth_app_identity: "YOYTHCONNECTID"
+				yoyth_secret: "YOYTHSECRET"
+
+
 	commands:
 		[
 			{
-				type: "login.anonymous"
+				type: "establish_connection"
 				wsid: "config"
 				request_type: "anonymous_login"
 				payload: {}
-				request_data: {server: "yoythcapture"}
+				request_data: {server: "yoythtest"}
 				identity_data: {identity: "anonymous"}
 			}
 		] 
 	events:
-		{
-			"get_sources": actions.set_sources,
-			"dates": actions.get_metric_data("dates"),
-			"days": actions.get_metric_data("days"),
-			"weeks": actions.get_metric_data("weeks"),
-			"months": actions.get_metric_data("months"),
-			"years": actions.get_metric_data("years"),
-			"send_to_subscriber": actions.setAck,
-			"login_anonymous": actions.set_login_anonymous,
-			"login": actions.set_login,
-			"ping": actions.receive_ping,
-			"anonymous_login": actions.setAck,
-			"ACK": actions.setAck,
-		}
+		"dates": actions.get_metric_data("dates")
+		"days": actions.get_metric_data("days")
+		"weeks": actions.get_metric_data("weeks")
+		"months": actions.get_metric_data("months")
+		"years": actions.get_metric_data("years")
+		"send_to_subscriber": actions.setAck
+		"login_anonymous": actions.set_login_anonymous
+		"login": actions.set_login
+		"ping": actions.receive_ping
+		"anonymous_login": actions.setAck
+		"vipps_access_token": actions.set_vipps_access_token
+		"ACK": actions.setAck
+
 def current_date 
 	return state.current_date
 

@@ -1,4 +1,4 @@
-def get_date(dd)
+def get_date(dd: Date)
 	let d
 	if dd 
 		d = dd
@@ -6,7 +6,7 @@ def get_date(dd)
 		d = new Date()
 	return d.toISOString().substring(0,10)
 
-def get_dayno(dd)
+def get_dayno(dd: string)
 	const d = new Date(dd)
 	let dayno = d.getDay()
 	if dayno === 0
@@ -24,7 +24,7 @@ def get_week(dd)
 	let week = d.isoWeek();
 	if (week < 10)
 		week = "0" + week;
-	return get_year() + "W" + week
+	return get_year(dd) + "W" + week
 
 def translate_attr(attrid, translate_to)
 	if typeof translate_to[attrid] === "string" 
