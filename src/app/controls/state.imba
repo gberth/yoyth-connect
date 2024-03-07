@@ -1,21 +1,6 @@
 import * as actions from "../controls/actions.imba"
 let state =
 	current_date: new Date()
-	vipps_configs:
-		test:
-			client_id: "a6341dae-0eba-49e8-90f9-504ac4fb05ec"
-			secret: "UT-8Q~2FpZu9mkBWNmA4w8kHNNEYDq8OCQvtWcas"
-			subscription_key: "e487ab7c1fca4e84b1f1a07d2eb9b997"
-			url: "https://apitest.vipps.no/access-management-1.0/access/.well-known/openid-configuration"
-			redirect_url: "https://yoyth-connect.vercel.app/v1/"
-			response: {}
-			endpoints: {}
-		prod:
-			url: "https://api.vipps.no/access-management-1.0/access/.well-known/openid-configuration"
-			response: {}
-			endpoints: {}
-
-	vipps_config: {}
 	new_date?: false
 	test: false
 	menuOpen?: false
@@ -58,23 +43,21 @@ let config =
 			resend: true
 			reconnect: true
 			connect: true
-			server: "yoythtest"
 			create_keys: true
 			type: "user_login"
 			payload: 
-				yoyth_login_identity: "yc-anonymous"
-				yoyth_app_identity: "YOYTHCONNECTID"
-				yoyth_secret: "YOYTHSECRET"
+				yoyth_login_identity: "YOYTHANONYMID"
+				yoyth_app: "YOYTHAPP"
 
 
 	commands:
 		[
 			{
-				type: "establish_connection"
-				wsid: "config"
+				type: "user_login"
+				wsid: "yoyth"
 				request_type: "anonymous_login"
 				payload: {}
-				request_data: {server: "yoythtest"}
+				request_data: {}
 				identity_data: {identity: "anonymous"}
 			}
 		] 

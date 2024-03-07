@@ -27,30 +27,12 @@ def signOutGoogle
 	state.signedIn = false
 	imba.commit()
 
-def signInGoogle
-	const config =
-		client_id: state.google_client_id
-		scope: "profile email"
-		redirect_uri: state.redirect_uri
+def signinVipps
 
-	resetSignIn()
-	config.callback = do(resp)
-		resp
-		
-	const client = window.google.accounts.oauth2.initTokenClient(config);
-
-	const tokenResponse = await new Promise(do(resolve, reject)
-		try
-			client.callback = do(resp)
-				if (resp.error !== undefined)
-					reject(resp);
-				resolve(resp);
-			client.requestAccessToken({ prompt: "consent" });
-		catch err
-			console.error(err);
-	)
-	localStorage.setItem(GOOGLE_USER_TOKEN_KEY, tokenResponse.access_token);
-	init_user()	
+	const url = "https://" + state.VIPPSAPI + "/access-management-1.0/access/oauth2/auth?client_id=" + state.VIPPSCLIENT + 
+	"&response_type=code&scope=openid%20name%20name%20phoneNumber%20address%20birthDate&state="+
+	uuidv4().toString()+"&redirect_uri=" + state.VIPPSREDIRECT + "&requested_flow=automatic_return_from_vipps_app"
+	window.open(url, "yoythLogin", 'resizable,height=4000,width=800')
 	return
 
 def setAck msg
@@ -335,37 +317,42 @@ def init
 		createScript()
 
 def init_user
+	def from_state(chkvar)
+		if chkvar.constructor == Object
+			let returns = {}
+			for own attr, val of chkvar
+				returns[attr] = from_state(val)
+			return returns
+
+		if state[chkvar] 
+			return state[chkvar]
+		else
+			return chkvar
+
 	if 'localhost' in window.location.href
 		localhost = true
+
 	const url = window.location.href.split("/")
 	if url.length > 3 and url[url.length - 1] == "test_components"
 		initiate_test_env()
 		imba.commit()
 		return
 
-	const token = localStorage.getItem(GOOGLE_USER_TOKEN_KEY);
-	if token
-		state.access_token = token
-		const user = await getUserInfo(token);
-
-		if not user
-			console.log("error sign out")
-			signOutGoogle()			
-		else
-			state.google_user = user
-			state.signedIn = true
-
 	for command in config.commands
+		console.log("wsid" + command.wsid)
 		if not state.sockets[command.wsid]
 			create_socket({
 				id: command.wsid
-				host: config.connection[command.wsid].url
-				resend: config.connection[command.wsid].resend
-				reconnect: config.connection[command.wsid].reconnect
+				host: from_state(config.connections[command.wsid].url)
+				resend: config.connections[command.wsid].resend
+				reconnect: config.connections[command.wsid].reconnect
 				onmessage: ic_dispatcher.onMessage
 				onStatusChange: onSocketStatusChange(command.wsid)
 			})
-		command.identity_data.access_token = token
+		command.payload = from_state(config.connections[command.wsid].payload)
+		console.dir(command.payload)
+		command.payload.yoyth_login_identity = command.payload.yoyth_login_identity + '.' + uuidv4().toString()
+
 		sendCommand(command)
 
 	for own event, action of config.events
@@ -543,7 +530,7 @@ export def resetSignIn()
 
 export def signIn()
 	state.signIn = true
-	signInGoogle()
+	signinVipps()
 
 export def signOut()
 	state.signedIn = false
