@@ -1,6 +1,8 @@
 
 import * as actions from "../controls/actions.imba"
 import {state} from "../controls/index.imba"
+import {create_msg} from "../controls/helpers.imba"
+
 import "./menu-button"
 
 tag yoyth_header
@@ -27,7 +29,7 @@ tag yoyth_header
 			userStatusButton = 
 				icon: "login"
 				title: "sign in" 
-				click: actions.signIn
+				click: state.dispatch_on("vipps_login")
 				open: true
 		else
 			userStatusButton = 

@@ -1,4 +1,6 @@
 import {state} from "./state"
+import {get_type} from "./helpers"
+
 def request(url)
 	fetch(url).then((response)
 		response.json());
@@ -58,7 +60,13 @@ def socket
 				_options.sent += 1
 				options.onStatusChange({ socket: _options, socket_status: 'error', error: error, errors: _options.errors })
 			_ws.onmessage = do(msgin)
-				options.onmessage(JSON.parse(msgin.data));
+				const msg = JSON.parse(msgin.data)
+				if msg.connection_id
+					console.log(msg.connection_id)
+				elif !(get_type(msg) === "ACK" and msg.payload === "ping")
+					options.onmessage(JSON.parse(msgin.data));
+				else
+					console.log("ping ok")
 			return this
 		reinit: do
 			this.initialize(_options)

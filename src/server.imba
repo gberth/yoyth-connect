@@ -79,7 +79,7 @@ const pingmessage =
 
 const vippsquery =
 	message_data:
-		type: 'vipps_query'
+		type: 'vipps_access_request'
 		creator: "yoyth_connect"
 		request_data:
 			stream_id: "web_server"
@@ -197,6 +197,14 @@ app.post('/increment', jsonBody) do(req,res)
 	res.send({
 		count: state.count
 	})
+app.post('/justtesting') do(req,res)
+	console.dir(req)
+	console.dir("body")
+	console.dir(req.body)
+	res.send({
+		body: req.body
+	})
+
 
 app.get('/count') do(req,res)
 	res.send({

@@ -6,7 +6,6 @@ import {dashboard} from "../components/dashboard"
 import {user} from "./user"
 import {board_menu_item} from "../components/board_menu_item"
 import {get_date} from "./helpers"
-import {vipps_client} from "./vipps-client"
 
 # import test_user from "../../test/state.user.json"
 # import test_metrics from "../../test/state.metrics.json"
@@ -26,14 +25,6 @@ def signOutGoogle
 	localStorage.removeItem(GOOGLE_USER_TOKEN_KEY);
 	state.signedIn = false
 	imba.commit()
-
-def signinVipps
-
-	const url = "https://" + state.VIPPSAPI + "/access-management-1.0/access/oauth2/auth?client_id=" + state.VIPPSCLIENT + 
-	"&response_type=code&scope=openid%20name%20name%20phoneNumber%20address%20birthDate&state="+
-	uuidv4().toString()+"&redirect_uri=" + state.VIPPSREDIRECT + "&requested_flow=automatic_return_from_vipps_app"
-	window.open(url, "yoythLogin", 'resizable,height=4000,width=800')
-	return
 
 def setAck msg
 	console.log msg
@@ -278,18 +269,6 @@ def getUserInfo(token)
 		return user
 	return
 
-def getVippsAccessToken(prod=false)
-	if prod 
-		let config = state.vipps_config.prod
-	else
-		let config = state.vipps_config.test
-
-	const response = await fetch(config.url);
-	const user = await response.json();
-	if 'amedia.no' in user.email
-		return user
-	return
-
 def get_config
 	console.log(window.location.href)
 	const response = await fetch(window.location.href+"yoythconfig");
@@ -305,16 +284,8 @@ def get_config
 
 def init
 	await get_config()
-
-	def createScript
-		const script = document.createElement("script");
-		script.src = "https://accounts.google.com/gsi/client";
-		script.async = true;
-		document.body.appendChild(script);
-	
+	console.log("after config")
 	init_user()
-	if not state.test
-		createScript()
 
 def init_user
 	def from_state(chkvar)
@@ -337,26 +308,18 @@ def init_user
 		initiate_test_env()
 		imba.commit()
 		return
-
-	for command in config.commands
-		console.log("wsid" + command.wsid)
-		if not state.sockets[command.wsid]
+	console.log("establish conn")
+	for own conn, conn_attr of config.connections
+		console.log("wsid" + conn)
+		if not state.sockets[conn]
 			create_socket({
-				id: command.wsid
-				host: from_state(config.connections[command.wsid].url)
-				resend: config.connections[command.wsid].resend
-				reconnect: config.connections[command.wsid].reconnect
-				onmessage: ic_dispatcher.onMessage
-				onStatusChange: onSocketStatusChange(command.wsid)
+				id: conn
+				host: from_state(conn_attr.url)
+				resend: conn_attr.resend
+				reconnect: conn_attr.reconnect
+				onmessage: state.dispatch
+				onStatusChange: onSocketStatusChange(conn)
 			})
-		command.payload = from_state(config.connections[command.wsid].payload)
-		console.dir(command.payload)
-		command.payload.yoyth_login_identity = command.payload.yoyth_login_identity + '.' + uuidv4().toString()
-
-		sendCommand(command)
-
-	for own event, action of config.events
-		ic_dispatcher.route(event, action)
 
 	setTimeout(&,60000) do
 		check_for_resubscribe()
@@ -411,7 +374,7 @@ def initiate_test_env
 export def create_socket(parm)
 	state.sockets[parm.id] = socket().initialize({
 		...parm
-		onmessage: ic_dispatcher.onMessage
+		onmessage: parm.onmessage or state.dispatch
 		onStatusChange: onSocketStatusChange(parm.id)
 	})
 
@@ -527,10 +490,6 @@ export def flipMenuOpen()
 export def resetSignIn()
 	console.log "resatt"
 	state.signIn = false
-
-export def signIn()
-	state.signIn = true
-	signinVipps()
 
 export def signOut()
 	state.signedIn = false

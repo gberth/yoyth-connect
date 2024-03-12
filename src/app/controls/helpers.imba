@@ -1,5 +1,14 @@
+import moment from "moment";
+import {state} from "./state"
+
+const timestamp = do()
+	moment.defaultFormat = "YYYY-MM-DDTHH:mm:ss.SSSZ"
+	return moment().format().trim();
+
 def get_type(msg)
-	return msg.message_data.type
+	if msg && msg.message_data
+		return msg.message_data.type
+	return undefined
 
 def is_ack(msg)
 	return msg.message_data.type === "ACK"
@@ -10,7 +19,21 @@ def get_original_type(msg)
 def msg_ok(msg)
 	return msg.message_data.request_data && msg.message_data.request_data.requestType && msg.message_data.request_data.requestType != "ERROR"
 
+def create_msg(msg_type, msg_payload, msg_identity_data)
+	const msg = 
+		message_data: 
+			type: msg_type, 
+			creator: state.YOYTHAPP,
+			created: timestamp()
+			original: 
+				type: msg_type
+		identity_data: msg_identity_data
+		payload: msg_payload
 
+	return {
+		message_data: {type: msg_type, original: {type: msg_type}}, payload: msg_payload, identity_data: msg_identity_data}
+def ts
+	return 	
 def get_date(dd: Date)
 	let d
 	if dd 
@@ -87,4 +110,4 @@ def clone_and_translate_array(attributes, translate_to)
 			new_values.push(translate_text(attribute, translate_to))
 	return new_values
 
-export {get_dayno, get_date, get_month, get_year, get_week, clone_and_translate_array, translate_text, is_ack, get_type, get_original_type, msg_ok}
+export {get_dayno, get_date, get_month, get_year, get_week, clone_and_translate_array, translate_text, is_ack, get_type, get_original_type, msg_ok, create_msg}

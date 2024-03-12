@@ -130,7 +130,7 @@ export default tag AgeSegmentIntervals
 		let postarrow
 		let conf
 		if typeof element.max_hour == "number"
-			const id = "board" + element.ix
+			const id = "#board" + element.ix
 			if typeof hour_set != "number" or element.max_hour > last_max and last_max = hour_set
 				hour_set = element.max_hour
 			conf = config()
@@ -166,7 +166,7 @@ export default tag AgeSegmentIntervals
 					<p>
 
 					if !chart_element
-						canvasel = <canvas#{id}>
+						canvasel = <canvas{id}>
 						ch = new Chart(canvasel.getContext('2d'), conf)
 						chart_element = ch
 						canvasel
