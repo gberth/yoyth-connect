@@ -17,8 +17,8 @@ export def dispatch()
 				msg.message_data.type = "ACK." + get_original_type(msg)
 			msg_types[get_type(msg)](msg)
 		else
-			console.error(`no message action for ${type}: msg{msg}`)
-			state.errors.push[`no message action for ${type}: msg{msg}`]
+			console.error(`no message action for {type}: msg{msg}`)
+			state.errors.push[`no message action for {type}: msg{msg}`]
 			console.dir(msg)
 	return dispatch_msg
 

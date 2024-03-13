@@ -63,6 +63,7 @@ def socket
 				const msg = JSON.parse(msgin.data)
 				if msg.connection_id
 					console.log(msg.connection_id)
+					_options.connection_id = msg.connection_id
 				elif !(get_type(msg) === "ACK" and msg.payload === "ping")
 					options.onmessage(JSON.parse(msgin.data));
 				else
@@ -89,11 +90,11 @@ def socket
 				elif _ws.readyState === 0
 					_options.waits += 1
 					if _options.waits < 100
-						console.log(`waiting ${_options.host} {_options.waits}`)
+						console.log(`waiting {_options.host} {_options.waits}`)
 						setTimeout(&,500) do
 							send()
 					else
-						console.log(`waited to long ${_options.host} `)
+						console.log(`waited to long {_options.host} `)
 						return false
 				else
 					_ws.onerror do

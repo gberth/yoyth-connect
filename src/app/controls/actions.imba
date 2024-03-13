@@ -375,7 +375,7 @@ export def create_socket(parm)
 	state.sockets[parm.id] = socket().initialize({
 		...parm
 		onmessage: parm.onmessage or state.dispatch
-		onStatusChange: onSocketStatusChange(parm.id)
+		onStatusChange: parm.onSocketStatusChange or onSocketStatusChange(parm.id)
 	})
 
 export def login({email, pw})
