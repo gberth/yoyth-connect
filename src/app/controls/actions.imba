@@ -253,6 +253,21 @@ def onSocketStatusChange(wsid)
 					reconnect_id: state.session_identity
 				}
 				state.sockets[wsid].sendmsg(msg)
+			if state.identity_data and state.identity_data.data.servers
+				for own server, serverdata of state.identity_data.data.servers
+					for msg in serverdata.messages
+						let newmsg = 
+							message_data: 
+								type: msg.type
+								original:
+									type: msg.type
+							payload: msg.payload
+							identity_data:
+								from_identity: state.identity_data.identity
+								to_identity: serverdata.identity
+								identity: state.identity_data.yoyth_login_identity
+						state.sockets[wsid].sendmsg(newmsg)
+
 		elif data.errors and data.erros < 10
 			if data.socket_status === "close" or data.socket_status === "error"
 				if data.socket.reconnect

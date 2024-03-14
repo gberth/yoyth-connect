@@ -1,12 +1,16 @@
 import {state} from "./state.imba"
 import {get_type, get_original_type, create_msg }  from "./helpers"
 import {login_messages} from "./messages/login_messages.imba"
+import {receive_messages} from "./messages/receive_messages.imba"
 
 const msg_types = 
 	"ACK.user_login": login_messages("ACK.user_login")
 	"ACK.ping": login_messages("ACK.ping")
 	"user_login": login_messages("user_login")
 	"vipps_login": login_messages("vipps_login")
+	"send_to_subscriber": receive_messages("receive_data")
+	"ACK.subscribe": receive_messages("receive_data")
+	"ACK.login.anonymous": receive_messages("receive_data")
 
 export def dispatch()
 	def dispatch_msg(msg)
