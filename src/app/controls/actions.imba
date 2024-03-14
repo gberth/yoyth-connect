@@ -247,28 +247,21 @@ def onSocketStatusChange(wsid)
 			console.log("socket change", wsid)
 			console.log(data)
 			console.log(data.socket)
-		if data.errors and data.erros < 10
+		if data.socket_status === "open"
+			if state.TESTUSER
+				let msg = {
+					reconnect_id: state.session_identity
+				}
+				state.sockets[wsid].sendmsg(msg)
+		elif data.errors and data.erros < 10
 			if data.socket_status === "close" or data.socket_status === "error"
 				if data.socket.reconnect
 					console.log("reconnect after " + data.socket_status)
 					create_socket({
 						...data.socket
 					})
-			elif data.socket_status === "open"
-				if data.socket.resend_msgs and data.socket.resend_msgs.length > 0
-					for msg in data.socket.resend_msgs
-						console.log("socket resubscribe ", msg)
-						state.sockets[wsid].sendmsg(msg)
-
-def getUserInfo(token)
-	if not token
-		return
-	const response = await fetch(`https://www.googleapis.com/oauth2/v1/userinfo?access_token={token}`);
-	const user = await response.json();
-	if 'amedia.no' in user.email
-		return user
-	return
-
+		else
+			console.dir(data)
 def get_config
 	console.log(window.location.href)
 	const response = await fetch(window.location.href+"yoythconfig");
@@ -281,6 +274,12 @@ def get_config
 		state[attr] = value
 
 	console.dir(state)
+	if state.TESTUSER
+		let userdata = JSON.parse(state.TESTUSER)
+		state.identity = userdata.yoyth_login_identity
+		state.identity_data = userdata
+		state.session_identity = userdata.identity
+
 
 def init
 	await get_config()
@@ -330,6 +329,13 @@ def init_user
 export def receive_ping()
 	console.log("ping received")
 
+def server_status()
+	let servers = []
+	if state.identity_data.data and state.identity_data.data.servers
+		for own server, serverdata of state.identity_data.data.servers
+			servers.push({id: server, identity: serverdata.identity})
+	return servers
+	
 def ping_all_sockets()
 	console.log("ping")
 	for own socketid, socket of state.sockets
@@ -337,7 +343,8 @@ def ping_all_sockets()
 		sendCommand({
 			type: 'ping'
 			request_type: "ping"
-			payload: "ping"
+			payload:
+				servers: server_status()
 			wsid: socketid
 		})
 
@@ -407,6 +414,8 @@ export def sendCommand(send)
 			id: msgid
 			type: send.type
 			request_data: send.request_data or {}
+			original:
+				type: send.type
 		identity_data: send.identity_data or {}
 		payload: send.payload
 	senddata.message_data.request_data.request_id = msgid	

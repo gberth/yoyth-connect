@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const msg_types = 
 	"ACK.user_login": ack_login
+	"ACK.ping": ack_ping
 	"user_login": login
 	"vipps_login": vipps_login
 
@@ -19,8 +20,18 @@ def ack_login()
 	console.log("set handle_ack_login")
 	def handle_ack_login(msg)
 		console.log("handle_ack_login")
+		console.dir(msg)
+		state.identity = msg.payload.yoyth_login_identity
+		state.identity_data = msg.payload
+
 	return handle_ack_login
 
+def ack_ping()
+	console.log("set ack_ping")
+	def handle_ack_login(msg)
+		console.dir(msg)
+
+	return handle_ack_login
 def login()
 	console.log("set login")
 	const handle_login = do(msg)

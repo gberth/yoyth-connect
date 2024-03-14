@@ -219,7 +219,8 @@ app.get('/yoythconfig') do(req,res)
 		VIPPSCLIENT: process.env.YOYTHVIPPSCLIENT,
 		VIPPSREDIRECT: process.env.YOYTHVIPPSREDIRECT,
 		YOYTHANONYMID: process.env.YOYTHANONYMID,
-		YOYTHAPP: process.env.YOYTHAPP
+		YOYTHAPP: process.env.YOYTHAPP,
+		TESTUSER: process.env.TESTUSER
 
 	})
 

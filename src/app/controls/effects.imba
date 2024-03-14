@@ -62,12 +62,10 @@ def socket
 			_ws.onmessage = do(msgin)
 				const msg = JSON.parse(msgin.data)
 				if msg.connection_id
-					console.log(msg.connection_id)
+					console.log(msg)
 					_options.connection_id = msg.connection_id
-				elif !(get_type(msg) === "ACK" and msg.payload === "ping")
-					options.onmessage(JSON.parse(msgin.data));
 				else
-					console.log("ping ok")
+					options.onmessage(JSON.parse(msgin.data));
 			return this
 		reinit: do
 			this.initialize(_options)
@@ -79,6 +77,7 @@ def socket
 				if _ws.readyState === 1
 					try
 						console.log("sending")
+						console.log(data)
 						_ws.send(JSON.stringify(data))
 						_options.sent += 1
 						_options.errors = 0

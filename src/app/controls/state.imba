@@ -23,7 +23,9 @@ let state =
 	abtests: {}
 	contents: {}
 	dashboards: []
-	user: {}
+	session_identity: ""
+	identity: ""
+	identity_data: {}
 	last_ts: {}
 	photo: ""
 	status: ""
