@@ -2,6 +2,7 @@ import {state} from "./state.imba"
 import {get_type, get_original_type, create_msg }  from "./helpers"
 import {login_messages} from "./messages/login_messages.imba"
 import {receive_messages} from "./messages/receive_messages.imba"
+import {request_messages} from "./messages/request_messages.imba"
 
 const msg_types = 
 	"ACK.user_login": login_messages("ACK.user_login")
@@ -11,28 +12,29 @@ const msg_types =
 	"send_to_subscriber": receive_messages("receive_data")
 	"ACK.subscribe": receive_messages("receive_data")
 	"ACK.login.anonymous": receive_messages("receive_data")
+	"get_list_of_banks": request_messages("get_list_of_banks")
+	"ACK.get_list_of_banks": request_messages("ACK.get_list_of_banks")
 
-export def dispatch()
-	def dispatch_msg(msg)
-		console.log("wwwwwwwwwwww")
+const dispatch = do|msg|
+	console.log("wwwwwwwwwwww")
+	console.dir(msg)
+	let type = get_type(msg) or msg
+	if type == "ACK"
+		type = msg.message_data.type = "ACK." + get_original_type(msg)
+	if type && msg_types[type]
+		msg_types[type](msg)
+	else
+		console.error(`no message action for {type}: msg{msg}`)
+		state.errors.push[`no message action for {type}: msg{msg}`]
 		console.dir(msg)
-		let type = get_type(msg)
-		if type == "ACK"
-			type = msg.message_data.type = "ACK." + get_original_type(msg)
-		if type && msg_types[type]
-			msg_types[get_type(msg)](msg)
-		else
-			console.error(`no message action for {type}: msg{msg}`)
-			state.errors.push[`no message action for {type}: msg{msg}`]
-			console.dir(msg)
-	return dispatch_msg
 
-export def dispatch_on(type)
-	const msg = create_msg(type, {},{})
+def dispatch_on(type, identity_data = {}, payload = {})
+	const msg = create_msg(type, identity_data, payload)
 	def dispatch_on_type()
 		console.log("wwwwwwwwwwww")
 		console.dir(msg)
-		dispatch()(msg)
+		dispatch(msg)
 
 	return dispatch_on_type
 
+export {dispatch, dispatch_on}

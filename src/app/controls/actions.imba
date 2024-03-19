@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import {state, config} from "./state"
-import {ic_dispatcher, socket} from "./effects"
+import {state, config, dispatch, dispatch_on} from "./state"
+import {socket} from "./effects"
 import {source} from "./source"
 import {dashboard} from "../components/dashboard"
 import {user} from "./user"
@@ -294,6 +294,7 @@ def get_config
 		state.identity = userdata.yoyth_login_identity
 		state.identity_data = userdata
 		state.session_identity = userdata.identity
+		state.signedIn = true
 
 
 def init
@@ -331,7 +332,7 @@ def init_user
 				host: from_state(conn_attr.url)
 				resend: conn_attr.resend
 				reconnect: conn_attr.reconnect
-				onmessage: state.dispatch
+				onmessage: dispatch
 				onStatusChange: onSocketStatusChange(conn)
 			})
 
@@ -396,7 +397,7 @@ def initiate_test_env
 export def create_socket(parm)
 	state.sockets[parm.id] = socket().initialize({
 		...parm
-		onmessage: parm.onmessage or state.dispatch
+		onmessage: parm.onmessage or dispatch
 		onStatusChange: parm.onSocketStatusChange or onSocketStatusChange(parm.id)
 	})
 

@@ -16,6 +16,9 @@ def is_ack(msg)
 def get_original_type(msg)
 	return msg.message_data.original.type
 
+def get_payload(msg)
+	return msg.message_data.payload
+
 def msg_ok(msg)
 	return msg.message_data.request_data && msg.message_data.request_data.requestType && msg.message_data.request_data.requestType != "ERROR"
 
@@ -110,4 +113,4 @@ def clone_and_translate_array(attributes, translate_to)
 			new_values.push(translate_text(attribute, translate_to))
 	return new_values
 
-export {get_dayno, get_date, get_month, get_year, get_week, clone_and_translate_array, translate_text, is_ack, get_type, get_original_type, msg_ok, create_msg}
+export {get_dayno, get_date, get_month, get_year, get_week, clone_and_translate_array, translate_text, is_ack, get_type, get_original_type, msg_ok, create_msg, get_payload}

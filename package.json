@@ -1,5 +1,5 @@
 {
-  "name": "ic-imba",
+  "name": "yoyth-connect",
   "scripts": {
     "dev": "imba -wMS src/server.imba",
     "build": "imba build --production --base ./ src/server.imba",
@@ -20,10 +20,10 @@
     "uuid": "^9.0.1",
     "ws": "^8.16.0"
   },
-  "repository": "gberth/ic-imba",
-  "description": "ic connect imba version",
+  "repository": "gberth/yoyth-connect",
+  "description": "yoyth connect imba version",
   "version": "1.0.0",
-  "homepage": "https://github.com/gberth/ic-imba",
+  "homepage": "https://github.com/gberth/yoyth-connect",
   "author": "Author Name (https://github.com/gberth)",
   "license": "ISC"
 }

@@ -1,9 +1,7 @@
-import * as actions from "../controls/actions.imba"
 import {dispatch, dispatch_on} from "../controls/msg_dispatcher"
 let state =
 	current_date: new Date()
-	dispatch: dispatch()
-	dispatch_on: dispatch_on
+	country: "no"
 	main_connection: "yoyth"
 	init_errors: []
 	errors: []
@@ -12,6 +10,7 @@ let state =
 	menuOpen?: false
 	menuFlipTs: 0
 	menu: {menu_items: {}}
+	banklist: {}
 	signIn: false
 	signedIn: false
 	subscribe: false
@@ -34,10 +33,19 @@ let state =
 	cardsubscriptions: {}
 	sitekey: ""
 	sitekey_login: false
-	redirect_uri: 'https://yoythrest'
-	vipps_access_token: ""
-	vipps_client_id: "..."
 	server_private_keys: {}
+	focus: "daily_focus"
+	focus_history: []
+
+const set_focus = do(new_focus, hide_menu = true)
+	return do() 
+		if new_focus !== "daily_focus"
+			state.focus_history = [state.focus].concat(state.focus_history)
+		else
+			state.focus_history = []		
+		state.focus = new_focus
+		if hide_menu
+			state.menuOpen? = false
 
 let config = 
 	connections:
@@ -50,4 +58,4 @@ let config =
 def current_date 
 	return state.current_date
 
-export {state, config, current_date}
+export {state, config, current_date, set_focus, dispatch, dispatch_on}

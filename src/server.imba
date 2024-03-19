@@ -61,7 +61,7 @@ const openmessage =
 		identity: process.env.YOYTHCONNECTID
 	payload:
 		yoyth_login_identity: process.env.YOYTHCONNECTID,
-		yoyth_login_name: process.env.YOYTHSERVERNAME,
+		yoyth_login_name: process.env.YOYTHAPP,
 		yoyth_secret: encrypt_secret(process.env.YOYTHIDSPUBLICKEY, process.env.YOYTHSECRET),
 		yoyth_ids_public_key: process.env.YOYTHSECRET
 

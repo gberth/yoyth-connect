@@ -1,4 +1,4 @@
-import {state} from "../state.imba"
+import {state, dispatch} from "../state.imba"
 import {create_msg} from "../helpers.imba"
 import { v4 as uuidv4 } from 'uuid';
 
@@ -52,7 +52,7 @@ def vipps_login()
 				type: "user_login"
 			payload:
 				vipps_key: loginkey
-		state.dispatch(create_msg("user_login", {vipps_key: loginkey}, {}))
+		dispatch(create_msg("user_login", {vipps_key: loginkey}, {}))
 
 		window.open(url, "yoythLogin", 'resizable,height=4000,width=800')
 		return
