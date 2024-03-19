@@ -10,7 +10,11 @@ tag yoyth-menu-item
 	def click_item(item)
 		def flip
 			if item.action
-				item.action()				
+				if Array.isArray(item.action)
+					for f in item.action
+						f()
+				else
+					item.action()				
 			else	
 				item.collapsed = !item.collapsed
 		return flip

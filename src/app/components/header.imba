@@ -31,7 +31,7 @@ tag yoyth_header
 			userStatusButton = 
 				icon: "login"
 				title: "sign in" 
-				click: dispatch_on("vipps_login")
+				click: dispatch_on("vipps_login", {identity_data: {}, payload: {}, close_menu: true})
 				open: true
 		else
 			userStatusButton = 

@@ -1,35 +1,35 @@
 import {set_focus, dispatch_on} from "./state"
-import {menu_texts} from "./texts"
+import {texts} from "./texts"
 console.log('??????????????????????')
 console.dir(set_focus)
 export var menu =
 	menu_items:
 		daily_focus:
 			collapsed: true
-			text: menu_texts.daily_focus
+			text: texts.daily_focus
 			logged_in: false
-			action: set_focus("daily_focus")
+			action: set_focus("daily_focus", true)
 		profile:
 			collapsed: true
-			text: menu_texts.profile
+			text: texts.profile
 			logged_in: true
-			action: set_focus("profile")
+			action: set_focus("profile", true)
 		settings:
 			collapsed: true
-			text: menu_texts.settings
+			text: texts.settings
 			logged_in: false
-			action: set_focus("settings")
+			action: set_focus("settings", true)
 		bank_accounts:
 			collapsed: true
-			text: menu_texts.bank_accounts
+			text: texts.bank_accounts
 			logged_in: true
 			menu_items:
 				new_account:
 					collapsed: true
-					action: dispatch_on("get_bank_list")
-					text: menu_texts.new_account
+					action: [set_focus("bank_list"), dispatch_on("get_bank_list", {identity_data: {}, payload: {}, close_menu: true})]
+					text: texts.new_account
 				account_status:
 					collapsed: true
 					type: ""
-					text: menu_texts.account_status
-					action: set_focus("account_status")
+					text: texts.account_status
+					action: set_focus("account_status", true)

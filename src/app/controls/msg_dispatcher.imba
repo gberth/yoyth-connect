@@ -28,13 +28,13 @@ const dispatch = do|msg|
 		state.errors.push[`no message action for {type}: msg{msg}`]
 		console.dir(msg)
 
-def dispatch_on(type, identity_data = {}, payload = {})
+def dispatch_on(type, {identity_data, payload, close_menu})
 	const msg = create_msg(type, identity_data, payload)
-	def dispatch_on_type()
+	return do()
 		console.log("wwwwwwwwwwww")
 		console.dir(msg)
 		dispatch(msg)
-
-	return dispatch_on_type
+		if close_menu
+			state.menuOpen? = false
 
 export {dispatch, dispatch_on}

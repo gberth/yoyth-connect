@@ -1,7 +1,7 @@
 import {state} from "./state"
 import {get_type} from "./helpers"
 
-export const menu_texts =
+export const texts =
 	daily_focus:
 		no: "I dag"
 		en: "Daily Focus"
@@ -20,4 +20,7 @@ export const menu_texts =
 	account_status: 
 		no: "Konto status"
 		en: "Account status"
+	bank_list: 
+		no: "Liste av banker"
+		en: "List of banks"
 

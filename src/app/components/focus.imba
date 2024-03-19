@@ -2,11 +2,13 @@ import {state} from "../controls/index.imba"
 import Profile from './elements/profile'
 import Settings from './elements/settings'
 import DailyFocus from './elements/daily_focus'
+import BankList from './elements/bank_list'
 
 const focus_types = 
 	profile: Profile
 	settings: Settings
 	daily_focus: DailyFocus
+	bank_list: BankList
 
 tag focus
 	<self>

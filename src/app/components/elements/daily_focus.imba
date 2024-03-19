@@ -1,3 +1,6 @@
+import {texts} from "../../controls/texts"
+import {state} from "../../controls/state"
+
 export default tag DailyFocus
 
 	css .daily_focus tween:all 200ms ease w:435px
@@ -12,4 +15,4 @@ export default tag DailyFocus
 
 	<self>
 		<div.daily_focus>
-			<a [c:white]> "Daily focus"
+			<a [c:white]> texts.daily_focus[state.country]
