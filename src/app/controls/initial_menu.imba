@@ -26,7 +26,7 @@ export var menu =
 			menu_items:
 				new_account:
 					collapsed: true
-					action: [set_focus("bank_list"), dispatch_on("get_bank_list", {identity_data: {}, payload: {}, close_menu: true})]
+					action: [set_focus("bank_list"), dispatch_on("get_list_of_banks", {identity_data: {}, payload: {}, close_menu: true})]
 					text: texts.new_account
 				account_status:
 					collapsed: true

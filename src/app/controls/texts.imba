@@ -23,4 +23,7 @@ export const texts =
 	bank_list: 
 		no: "Liste av banker"
 		en: "List of banks"
+	waiting_for_bank_list: 
+		no: "Venter på liste over banker"
+		en: "Waiting for list of banks"
 

@@ -10,7 +10,7 @@ let state =
 	menuOpen?: false
 	menuFlipTs: 0
 	menu: {menu_items: {}}
-	banklist: {}
+	banklist: []
 	signIn: false
 	signedIn: false
 	subscribe: false

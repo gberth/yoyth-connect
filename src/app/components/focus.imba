@@ -15,5 +15,5 @@ tag focus
 		<div [d:flex]>
 			if focus_types[state.focus]
 				<div[d:grid gtc:1fr 1fr gap:4 pos:abs w:100% h:100% p:4]>
-				<{focus_types[state.focus]} elemnt=state.focus>
+				<{focus_types[state.focus]} element=state.focus>
 

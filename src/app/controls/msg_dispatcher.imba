@@ -3,6 +3,8 @@ import {get_type, get_original_type, create_msg }  from "./helpers"
 import {login_messages} from "./messages/login_messages.imba"
 import {receive_messages} from "./messages/receive_messages.imba"
 import {request_messages} from "./messages/request_messages.imba"
+import {send_messages} from "./messages/send_messages.imba"
+import {system_messages} from "./messages/system_messages.imba"
 
 const msg_types = 
 	"ACK.user_login": login_messages("ACK.user_login")
@@ -12,8 +14,10 @@ const msg_types =
 	"send_to_subscriber": receive_messages("receive_data")
 	"ACK.subscribe": receive_messages("receive_data")
 	"ACK.login.anonymous": receive_messages("receive_data")
-	"get_list_of_banks": request_messages("get_list_of_banks")
+	"init_list_of_banks": request_messages("get_list_of_banks")
 	"ACK.get_list_of_banks": request_messages("ACK.get_list_of_banks")
+	"get_list_of_banks": send_messages("get_list_of_banks")
+	"yoyth.lost_connection": system_messages("yoyth.lost_connection")
 
 const dispatch = do|msg|
 	console.log("wwwwwwwwwwww")

@@ -39,7 +39,7 @@ tag yoyth-menu-item
 			if item.menu_items and not item.collapsed
 				<div>
 					for own name, childitem of item.menu_items	
-						<yoyth-menu-item item=childitem text=name level=(level + 1)>
+						<yoyth-menu-item item=childitem text=childitem.text[state.country] level=(level + 1)>
 
 tag yoyth-menu
 	prop items

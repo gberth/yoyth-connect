@@ -16,3 +16,8 @@ export default tag BankList
 	<self>
 		<div.bank_list>
 			<a [c:white]> texts.bank_list[state.country]
+			if state.banklist.length === 0
+				<a [c:white]> texts.waiting_for_bank_list[state.country]
+			else
+				<a> "bank list"
+
