@@ -14,9 +14,9 @@ const msg_types =
 	"send_to_subscriber": receive_messages("receive_data")
 	"ACK.subscribe": receive_messages("receive_data")
 	"ACK.login.anonymous": receive_messages("receive_data")
-	"init_list_of_banks": request_messages("get_list_of_banks")
-	"ACK.get_list_of_banks": request_messages("ACK.get_list_of_banks")
-	"get_list_of_banks": send_messages("get_list_of_banks")
+	"init_list_of_banks": request_messages("get_bank_list")
+	"ACK.get_bank_list": request_messages("ACK.get_bank_list")
+	"get_bank_list": send_messages("get_bank_list")
 	"yoyth.lost_connection": system_messages("yoyth.lost_connection")
 
 const dispatch = do|msg|

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const msg_types = 
 	"send_message": send_message
-	"get_list_of_banks": get_list_of_banks
+	"get_bank_list": get_bank_list
 
 def send_messages(type)
 	if msg_types[type] 
@@ -21,7 +21,7 @@ def send_message()
 		state.sockets[state.main_connection].sendmsg(msg)
 	return send
 
-def get_list_of_banks()
+def get_bank_list()
 	console.log("get_list of banks meth")
 	const send= do(msg)
 		// legg på to_identity
