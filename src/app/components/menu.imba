@@ -31,15 +31,15 @@ tag yoyth-menu-item
 		const click = click_item(item)
 
 		<self>
-
-			<a.item [cursor:pointer d:flex] @click=click>
-				<span.jleft [c:white d:flex fl:4][ml:{level*2}]> text
-				<span.jright[c:white d:flex fl:1] className='material-icons'> maticon
-			
-			if item.menu_items and not item.collapsed
-				<div>
-					for own name, childitem of item.menu_items	
-						<yoyth-menu-item item=childitem text=childitem.text[state.country] level=(level + 1)>
+			if not (item.logged_in and not state.signedIn)
+				<a.item [cursor:pointer d:flex] @click=click>
+					<span.jleft [c:white d:flex fl:4][ml:{level*2}]> text
+					<span.jright[c:white d:flex fl:1] className='material-icons'> maticon
+				
+				if item.menu_items and not item.collapsed
+					<div>
+						for own name, childitem of item.menu_items	
+							<yoyth-menu-item item=childitem text=childitem.text[state.country] level=(level + 1)>
 
 tag yoyth-menu
 	prop items

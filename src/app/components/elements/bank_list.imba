@@ -1,5 +1,13 @@
 import {texts} from "../../controls/texts"
-import {state} from "../../controls/state"
+import {state, dispatch_on} from "../../controls/state"
+
+def click_item(bank)
+	console.log('jada')
+	def on_click
+		console.log("click")
+		console.log(bank)
+		dispatch_on("get_bank_accounts_link", {identity_data: {}, payload: {bank_id: bank.id}, close_menu: true})()
+	return on_click
 
 export default tag BankList
 
@@ -7,17 +15,24 @@ export default tag BankList
 		bgc:warm7  p:10px rd:lg
 		d:grid ja:center
 		shadow:0 5px 15px black/20
-	css .one_metric_box ease w:400px
-		d:grid bgc:pink4  p:10px rd:lg
+	css .one_bank_box tween:all 200ms ease w:435px
+		bgc:blue4  p:10px rd:lg
+		d:flex jc:center
+		shadow:0 5px 15px black/20
+	css .txt cursor:pointer
 
 	prop element
 	prop instancedata
 
 	<self>
-		<div.bank_list>
+		<span.bank_list>
 			<a [c:white]> texts.bank_list[state.country]
 			if state.banklist.length === 0
 				<a [c:white]> texts.waiting_for_bank_list[state.country]
 			else
-				<a> "bank list"
+				for bank in state.banklist
+					const click = click_item(bank)
+					<span.one_bank_box>
+						<span.txt @click=click> bank.name
+					<p>
 

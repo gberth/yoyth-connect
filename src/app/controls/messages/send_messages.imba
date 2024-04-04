@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 const msg_types = 
 	"send_message": send_message
 	"get_bank_list": get_bank_list
+	"get_bank_accounts_link": get_bank_accounts_link
 
 def send_messages(type)
 	if msg_types[type] 
@@ -30,6 +31,19 @@ def get_bank_list()
 		msg.identity_data.from_identity = state.session_identity
 		console.log("get list of banks")
 		state.sockets[state.main_connection].sendmsg(msg)
+	return send
+
+def get_bank_accounts_link()
+	console.log("get_link of banks meth")
+	const send= do(msg)
+		// legg på to_identity
+		msg.identity_data.identity = state.identity
+		msg.identity_data.to_identity = state.YOYTHBANKIDENTITY
+		msg.identity_data.from_identity = state.session_identity
+		console.log("get link to bank")
+		state.sockets[state.main_connection].sendmsg(msg)
+		state.menuOpen? = false
+		state.focus = state.focus_history.pop()
 	return send
 
 export {send_messages}	

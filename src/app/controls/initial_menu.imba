@@ -19,6 +19,11 @@ export var menu =
 			text: texts.settings
 			logged_in: false
 			action: set_focus("settings", true)
+		save_clipboard:
+			collapsed: true
+			text: texts.save_clipboard
+			logged_in: true
+			action: set_focus("save_clipboard", true)
 		bank_accounts:
 			collapsed: true
 			text: texts.bank_accounts

@@ -424,7 +424,8 @@ export def addDashboard()
 
 export def sendCommand(send)
 	const msgid = uuidv4().toString();
-	state.requests[msgid] = send;
+	if send.type != "ping"
+		state.requests[msgid] = send;
 	const senddata = 
 		message_data: 
 			id: msgid

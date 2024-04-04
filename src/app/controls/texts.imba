@@ -26,4 +26,7 @@ export const texts =
 	waiting_for_bank_list: 
 		no: "Venter på liste over banker"
 		en: "Waiting for list of banks"
+	save_clipboard: 
+		no: "Kopier clipboard til Yoyth"
+		en: "Copy clipboard til Yoyth"
 

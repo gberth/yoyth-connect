@@ -1,11 +1,14 @@
 import {state} from "../state.imba"
 import { Buffer } from 'buffer';
 import pako from 'pako'
+import {get_payload} from "../helpers.imba"
+
 
 
 const msg_types = 
 	"receive_data": receive_data
-
+	"ACK.get_bank_list": set_list_of_banks
+	"ACK.get_bank_accounts_link": ack_get_accounts_link
 def receive_messages(type)
 	if msg_types[type] 
 		return msg_types[type]()
@@ -34,5 +37,23 @@ def receive_data()
 			state.photo_id = msg.payload.data.id
 			imba.commit()		
 	return handle_receive_data
+
+def set_list_of_banks()
+	console.log("set_list_of_banks")
+	def create_msg(msg)
+		state.banklist = get_payload(msg)
+		console.log("aaaaaack banklist")
+		console.dir(msg)
+		imba.commit()
+	return create_msg
+
+def ack_get_accounts_link()
+	console.log("set_get_accounts_link")
+	def go_to_url(msg)
+		console.log(get_payload(msg))
+		if get_payload(msg).link
+			window.open(get_payload(msg).link, "Bank approval", 'resizable,height=4000,width=800')
+		imba.commit()
+	return go_to_url
 
 export {receive_messages}	

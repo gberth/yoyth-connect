@@ -17,12 +17,12 @@ def get_original_type(msg)
 	return msg.message_data.original.type
 
 def get_payload(msg)
-	return msg.message_data.payload
+	return msg.payload
 
 def msg_ok(msg)
 	return msg.message_data.request_data && msg.message_data.request_data.requestType && msg.message_data.request_data.requestType != "ERROR"
 
-def create_msg(msg_type, msg_payload, msg_identity_data)
+def create_msg(msg_type, msg_identity_data, msg_payload)
 	const msg = 
 		message_data: 
 			type: msg_type, 
