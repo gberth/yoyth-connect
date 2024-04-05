@@ -1,40 +1,6 @@
 import {texts} from "../../controls/texts"
 import {state} from "../../controls/state"
-import EasyMDE from "easymde"
-
-import "../../components/menu-button"
-
-let mde
-
-const cancel_clipboard = do()
-	mde.cleanup()	
-	state.focus = state.focus_history.pop()
-
-const save_clipboard = do()
-	console.log("save")
-	console.log(mde.value())
-	mde.cleanup()
-	state.focus = state.focus_history.pop()
-	 
-const cancel_button = 
-	icon: "cancel"
-	title: "cancel"
-	click: cancel_clipboard
-	open: true
-
-const save_button = 
-	icon: "save"
-	title: "save to Yoyth"
-	click: save_clipboard
-	open: true
-
-const newmde = do(val)
-	if not mde
-		mde = new EasyMDE({element: document.getElementById('md-text-area')})
-	mde.value(val);
-
-	return undefined
-
+import MdEditor from "./md_editor"
 export default tag SaveClipboard
 
 	css .clib_board tween:all 200ms ease w:435px
@@ -47,14 +13,13 @@ export default tag SaveClipboard
 	prop element
 	prop instancedata
 	def render
-		const val = await window.navigator.clipboard.readText()
+		const value = await window.navigator.clipboard.readText()
+		console.log("kkkkkkkkkkkkkkkkkkkkk")
+		const save = do(mde)
+			return do()
+				console.log(mde.mde_object.value())
+				state.focus = state.focus_history.pop()
+				imba.commit()
 
-		<self>	
-			<div>
-				<a [c:white]> texts.save_clipboard[state.country]
-				<textarea id="md-text-area">
-				<div.buttons>
-					<menu-button button=save_button>
-				<div.buttons>
-					<menu-button button=cancel_button>
-				newmde(val);
+		<self>
+			<MdEditor value=value save=save>

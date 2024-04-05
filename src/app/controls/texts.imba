@@ -29,4 +29,7 @@ export const texts =
 	save_clipboard: 
 		no: "Kopier clipboard til Yoyth"
 		en: "Copy clipboard til Yoyth"
+	setting_list: 
+		no: "Liste over settinger"
+		en: "List of settings"
 

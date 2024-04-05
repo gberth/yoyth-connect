@@ -64,7 +64,8 @@ def ack_get_user_settings()
 		const pl = get_payload(msg)
 		if Array.isArray(pl) and pl.length > 0
 			pl.forEach do(setting)
-				state[setting.yItem.yMetaData.yId] = setting
+				state.settings[setting.yItem.yMetaData.yId].item = setting
+				state.settings[setting.yItem.yMetaData.yId].value = setting.yItem.yContent
 
 		imba.commit()
 	return settings

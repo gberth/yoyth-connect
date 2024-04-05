@@ -4,6 +4,11 @@ let state =
 	country: "no"
 	main_connection: "yoyth"
 	settings: {}
+	settings_list: {
+		clipboard_before: {edit: "md_editor", default: "Categories []/n"}
+		clibboard_after: {edit: "md_editor"}
+	}
+	settings_element: ""
 	init_errors: []
 	errors: []
 	new_date?: false
