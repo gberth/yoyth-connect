@@ -9,6 +9,8 @@ const msg_types =
 	"receive_data": receive_data
 	"ACK.get_bank_list": set_list_of_banks
 	"ACK.get_bank_accounts_link": ack_get_accounts_link
+	"ACK.get_user_settings": ack_get_user_settings
+
 def receive_messages(type)
 	if msg_types[type] 
 		return msg_types[type]()
@@ -55,5 +57,16 @@ def ack_get_accounts_link()
 			window.open(get_payload(msg).link, "Bank approval", 'resizable,height=4000,width=800')
 		imba.commit()
 	return go_to_url
+
+def ack_get_user_settings()
+	console.log("set_get_accounts_link")
+	def settings(msg)
+		const pl = get_payload(msg)
+		if Array.isArray(pl) and pl.length > 0
+			pl.forEach do(setting)
+				state[setting.yItem.yMetaData.yId] = setting
+
+		imba.commit()
+	return settings
 
 export {receive_messages}	

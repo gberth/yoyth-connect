@@ -21,8 +21,20 @@ def ack_login()
 	def handle_ack_login(msg)
 		console.log("handle_ack_login")
 		console.dir(msg)
-		state.identity = msg.payload.yoyth_login_identity
+		state.identity = msg.payload.data.identity
 		state.identity_data = msg.payload
+		state.signedIn = true
+		const settings_msg = 
+			message_data:
+				type: "get_user_settings"
+			identity_data:
+				identity: state.identity
+				to_identity: state.YOYTHUSERSERVERIDENTITY
+				from_identity: state.session_identity
+			payload: {}
+		dispatch(settings_msg)
+
+
 
 	return handle_ack_login
 

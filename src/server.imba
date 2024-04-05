@@ -164,6 +164,7 @@ def wait_a_second_and_retry
 			console.log("restart server")
 			app_in_error = true
 			process.exit(12)
+			process.abort
 		console.log("try to establish connection")
 		initiate_connection()
 
@@ -220,6 +221,7 @@ app.get('/yoythconfig') do(req,res)
 		VIPPSREDIRECT: process.env.YOYTHVIPPSREDIRECT,
 		YOYTHANONYMID: process.env.YOYTHANONYMID,
 		YOYTHBANKIDENTITY: process.env.YOYTHBANKIDENTITY,
+		YOYTHUSERSERVERIDENTITY: process.env.YOYTHUSERSERVERIDENTITY,
 		YOYTHAPP: process.env.YOYTHAPP,
 		TESTUSER: process.env.TESTUSER
 

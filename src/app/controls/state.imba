@@ -3,6 +3,7 @@ let state =
 	current_date: new Date()
 	country: "no"
 	main_connection: "yoyth"
+	settings: {}
 	init_errors: []
 	errors: []
 	new_date?: false
