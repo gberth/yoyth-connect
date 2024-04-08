@@ -27,7 +27,7 @@ tag app
 			if state.signedIn
 				<focus>
 			else
-				<a> "Fjellet er fint"
+				<a> "You Own Your THings - being developed"
 			if state.photo
 				<div[ml:150px]>
 					<img.rotate width=600 height=450 src="data:image/jpg;base64,"+state.photo>
