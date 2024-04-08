@@ -27,6 +27,9 @@ let n_pings = 0
 let app_in_error = false
 let msg_waiting = []
 
+console.log("env?")
+console.dir(process.env)
+
 def send_msgs(msg)
 	if not connectionOpen and msg
 		msg_waiting.push(msg)
@@ -186,6 +189,7 @@ ping()
 const jsonBody = express.json({ limit: '1kb' })
 
 app.use('/v1/', express.static(path.join(__dirname,'../dist/public')))
+app.use('/', express.static(path.join(__dirname,'../dist/public')))
 app.use('/vipps/', express.static(path.join(__dirname,'../dist/public')))
 app.use('/yoyth/', express.static(path.join(__dirname,'../dist/public')))
 
