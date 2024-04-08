@@ -1,11 +1,13 @@
 import "./components/page.imba"
 import "./components/header.imba"
-import "./components/dashboards.imba"
+import "./components/focus.imba"
 import "./components/menu.imba"
 import {init, state} from "./controls/index.imba"
+import {menu} from "./controls/initial_menu.imba"
 
 init()
 console.log("state:", state)
+state.menu = menu
 
 global css html
 	ff:sans
@@ -23,9 +25,9 @@ tag app
 			<.yoyth_header>
 				<yoyth_header[d:hflex w:100%]>
 			if state.signedIn
-				<dashboards>
+				<focus>
 			else
-				<a> "Fjellet er fint"
+				<a> "You Own Your THings - being developed"
 			if state.photo
 				<div[ml:150px]>
 					<img.rotate width=600 height=450 src="data:image/jpg;base64,"+state.photo>
@@ -34,6 +36,6 @@ tag app
 					<p> JSON.stringify(state.status)
 
 			if state.menuOpen?
-				<ic-menu items=state.menu.menu_items>
+				<yoyth-menu items=state.menu.menu_items>
 
 imba.mount <app>

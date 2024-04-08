@@ -1,11 +1,22 @@
-import * as actions from "../controls/actions.imba"
+import {dispatch, dispatch_on} from "../controls/msg_dispatcher"
 let state =
 	current_date: new Date()
+	country: "no"
+	main_connection: "yoyth"
+	settings: {}
+	settings_list: {
+		clipboard_before: {edit: "md_editor", default: "Categories []/n"}
+		clibboard_after: {edit: "md_editor"}
+	}
+	settings_element: ""
+	init_errors: []
+	errors: []
 	new_date?: false
 	test: false
 	menuOpen?: false
 	menuFlipTs: 0
 	menu: {menu_items: {}}
+	banklist: []
 	signIn: false
 	signedIn: false
 	subscribe: false
@@ -17,7 +28,9 @@ let state =
 	abtests: {}
 	contents: {}
 	dashboards: []
-	user: {}
+	session_identity: ""
+	identity: ""
+	identity_data: {}
 	last_ts: {}
 	photo: ""
 	status: ""
@@ -26,44 +39,29 @@ let state =
 	cardsubscriptions: {}
 	sitekey: ""
 	sitekey_login: false
-	vipps_client_id: "..." 
-	redirect_uri: 'https://yoythrest'
-	access_token: ""
-	google_user: {} 
+	server_private_keys: {}
+	focus: "daily_focus"
+	focus_history: []
+
+const set_focus = do(new_focus, hide_menu = true)
+	return do() 
+		if new_focus !== "daily_focus"
+			state.focus_history = [state.focus].concat(state.focus_history)
+		else
+			state.focus_history = []		
+		state.focus = new_focus
+		if hide_menu
+			state.menuOpen? = false
 
 let config = 
-	connection:
-		config: 
-			url: 'wss://y0y7h.herokuapp.com'
+	connections:
+		yoyth: 
+			url: "YOYTHWSADDRESS"
 			resend: true
 			reconnect: true
-	commands:
-		[
-			{
-				type: "login.anonymous"
-				wsid: "config"
-				request_type: "anonymous_login"
-				payload: {}
-				request_data: {server: "yoythcapture"}
-				identity_data: {identity: "anonymous"}
-			}
-		] 
-	events:
-		{
-			"get_sources": actions.set_sources,
-			"dates": actions.get_metric_data("dates"),
-			"days": actions.get_metric_data("days"),
-			"weeks": actions.get_metric_data("weeks"),
-			"months": actions.get_metric_data("months"),
-			"years": actions.get_metric_data("years"),
-			"send_to_subscriber": actions.setAck,
-			"login_anonymous": actions.set_login_anonymous,
-			"login": actions.set_login,
-			"ping": actions.receive_ping,
-			"anonymous_login": actions.setAck,
-			"ACK": actions.setAck,
-		}
+			connect: true
+
 def current_date 
 	return state.current_date
 
-export {state, config, current_date}
+export {state, config, current_date, set_focus, dispatch, dispatch_on}

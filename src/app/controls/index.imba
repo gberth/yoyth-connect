@@ -1,5 +1,5 @@
-import {state, config} from "./state"
-import {request, ic_dispatcher, socket} from "./effects"
+import {state, config, dispatch, dispatch_on} from "./state"
+import {request, socket} from "./effects"
 import {init} from "./actions.imba"
 
 export {
@@ -7,6 +7,7 @@ export {
 	state
 	config
 	request
-	ic_dispatcher
 	socket
+	dispatch
+	dispatch_on
 }	

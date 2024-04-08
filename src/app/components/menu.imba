@@ -1,16 +1,20 @@
 import * as actions from "../controls/actions.imba"
 import {state} from "../controls/index.imba"
 
-tag ic-menu-item
+tag yoyth-menu-item
 
 	prop item
 	prop text
 	prop level = 0
 
-	def flip_collapsed(item)
+	def click_item(item)
 		def flip
-			if item.flip
-				actions.flip_state(item.flip)
+			if item.action
+				if Array.isArray(item.action)
+					for f in item.action
+						f()
+				else
+					item.action()				
 			else	
 				item.collapsed = !item.collapsed
 		return flip
@@ -23,28 +27,21 @@ tag ic-menu-item
 	css .jright jc:flex-end
 
 	def render
-		const maticon = if item.collapsed then "arrow_circle_down" else "arrow_circle_up"
-		const click = flip_collapsed(item)
+		const maticon = if not item.action and item.collapsed then "arrow_circle_down" elif item.action then "arrow_circle_right" else "arrow_circle_up" 
+		const click = click_item(item)
 
 		<self>
+			if not (item.logged_in and not state.signedIn)
+				<a.item [cursor:pointer d:flex] @click=click>
+					<span.jleft [c:white d:flex fl:4][ml:{level*2}]> text
+					<span.jright[c:white d:flex fl:1] className='material-icons'> maticon
+				
+				if item.menu_items and not item.collapsed
+					<div>
+						for own name, childitem of item.menu_items	
+							<yoyth-menu-item item=childitem text=childitem.text[state.country] level=(level + 1)>
 
-			<a.item [cursor:pointer d:flex] @click=click>
-				<span.jleft [c:white d:flex fl:4][ml:{level*2}]> text
-				<span.jright[c:white d:flex fl:1] className='material-icons'> maticon
-			if item.type and not item.collapsed and typeof(item.collapsed) !== "undefined"
-				typevalues = item.type.get_menu_item()
-				item.collapsed = true
-				console.log('ttttt', typevalues)
-				<a.item [cursor:pointer] @click=typevalues.click>
-					<span.jleft [c:white d:flex fl:4][ml:{(level+1)*2}]> typevalues.text
-					<span.jright [c:white d:flex fl:1] className='material-icons'> typevalues.icon
-			
-			if item.menu_items and not item.collapsed
-				<div>
-					for own name, childitem of item.menu_items	
-						<ic-menu-item item=childitem text=name level=(level + 1)>
-
-tag ic-menu
+tag yoyth-menu
 	prop items
 	css .menu pos:absolute bgc:warm7 top:21 w:370px o:1 p:5 pr:1 pt:24px pb:60px rd:lg
 	def render
@@ -54,5 +51,5 @@ tag ic-menu
 				@click.outside=(actions.flipMenuOpen())
 			>
 			<div.menu>
-				for item_name in item_keys
-					<ic-menu-item text=item_name item=items[item_name]>
+				for own menu_item, menu_item_values of items
+					<yoyth-menu-item text=menu_item_values.text[state.country] item=menu_item_values>

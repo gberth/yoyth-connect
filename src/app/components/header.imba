@@ -1,7 +1,11 @@
 
 import * as actions from "../controls/actions.imba"
-import {state} from "../controls/index.imba"
+import {state, dispatch_on} from "../controls/index.imba"
+
 import "./menu-button"
+
+let menubutton
+let userStatusButton
 
 tag yoyth_header
 
@@ -27,7 +31,7 @@ tag yoyth_header
 			userStatusButton = 
 				icon: "login"
 				title: "sign in" 
-				click: actions.signIn
+				click: dispatch_on("vipps_login", {identity_data: {}, payload: {}, close_menu: true})
 				open: true
 		else
 			userStatusButton = 
@@ -35,7 +39,7 @@ tag yoyth_header
 				title: "sign out" 
 				click: actions.signOut
 				open: true
-		addDashboard = 
+		let addDashboard = 
 			icon: "add"
 			title: "new Dashboard" 
 			click: actions.addDashboard

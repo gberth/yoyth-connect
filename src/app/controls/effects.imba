@@ -1,42 +1,16 @@
 import {state} from "./state"
+import {get_type} from "./helpers"
+
 def request(url)
 	fetch(url).then((response)
 		response.json());
-
-def dispatcher
-	let MsgtypeRouting = {};
-	{
-		route: do(type, action)
-			console.log("roouuuuuuuuuuuuuuuu", type)
-			MsgtypeRouting[type] = action;
-		onMessage: do(msg)
-			if msg.message_data and msg.message_data.type
-				console.log(msg.message_data.type)
-				if MsgtypeRouting[msg.message_data.type] 
-					MsgtypeRouting[msg.message_data.type](msg);
-				else
-					let request_msg
-					if msg.message_data.request_data and msg.message_data.request_data.request_id
-						request_msg = state.requests[msg.message_data.request_data.request_id]
-					if request_msg and MsgtypeRouting[request_msg.request_type]
-						MsgtypeRouting[request_msg.request_type](msg)
-					else
-						console.log("not defined " + msg.message_data.type);
-						console.log(state.requests)
-						console.log(MsgtypeRouting)
-						console.log(msg)
-						console.log(request_msg)
-
-			else
-				console.log("not a message " + msg)
-	}
 
 def socket
 	let _options = {}
 	let _ws = WebSocket
 	return {
 		initialize: do(options)
-			console.log(options)
+			console.dir(options)
 			_options = options
 			_options.sent = 0
 			_options.errors = 0
@@ -57,8 +31,16 @@ def socket
 				console.dir(error)
 				_options.sent += 1
 				options.onStatusChange({ socket: _options, socket_status: 'error', error: error, errors: _options.errors })
-			_ws.onmessage = do(msgin)
-				options.onmessage(JSON.parse(msgin.data));
+			_ws.onmessage = do |msgin|
+				const msg = JSON.parse(msgin.data)
+				if msg.connection_id
+					console.log(msg)
+					_options.connection_id = msg.connection_id
+				else
+					console.log("her?")
+					console.dir(options.onmessage)
+					options.onmessage(JSON.parse(msgin.data));
+					console.log("etter her?")
 			return this
 		reinit: do
 			this.initialize(_options)
@@ -70,6 +52,7 @@ def socket
 				if _ws.readyState === 1
 					try
 						console.log("sending")
+						console.log(data)
 						_ws.send(JSON.stringify(data))
 						_options.sent += 1
 						_options.errors = 0
@@ -81,11 +64,11 @@ def socket
 				elif _ws.readyState === 0
 					_options.waits += 1
 					if _options.waits < 100
-						console.log(`waiting ${_options.host} {_options.waits}`)
+						console.log(`waiting {_options.host} {_options.waits}`)
 						setTimeout(&,500) do
 							send()
 					else
-						console.log(`waited to long ${_options.host} `)
+						console.log(`waited to long {_options.host} `)
 						return false
 				else
 					_ws.onerror do
@@ -95,5 +78,4 @@ def socket
 				_options.onStatusChange({ id: _options.id, socketStatus: 'error', readystate: _ws.readyState, errors: _options.errors })
 		}
 
-let ic_dispatcher = dispatcher()
-export {request, ic_dispatcher, socket}
+export {request, socket}

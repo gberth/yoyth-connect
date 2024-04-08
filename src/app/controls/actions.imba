@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import {state, config} from "./state"
-import {ic_dispatcher, socket} from "./effects"
+import {state, config, dispatch, dispatch_on} from "./state"
+import {socket} from "./effects"
 import {source} from "./source"
 import {dashboard} from "../components/dashboard"
 import {user} from "./user"
@@ -25,32 +25,6 @@ def signOutGoogle
 	localStorage.removeItem(GOOGLE_USER_TOKEN_KEY);
 	state.signedIn = false
 	imba.commit()
-
-def signInGoogle
-	const config =
-		client_id: state.google_client_id
-		scope: "profile email"
-		redirect_uri: state.redirect_uri
-
-	resetSignIn()
-	config.callback = do(resp)
-		resp
-		
-	const client = window.google.accounts.oauth2.initTokenClient(config);
-
-	const tokenResponse = await new Promise(do(resolve, reject)
-		try
-			client.callback = do(resp)
-				if (resp.error !== undefined)
-					reject(resp);
-				resolve(resp);
-			client.requestAccessToken({ prompt: "consent" });
-		catch err
-			console.error(err);
-	)
-	localStorage.setItem(GOOGLE_USER_TOKEN_KEY, tokenResponse.access_token);
-	init_user()	
-	return
 
 def setAck msg
 	console.log msg
@@ -273,75 +247,104 @@ def onSocketStatusChange(wsid)
 			console.log("socket change", wsid)
 			console.log(data)
 			console.log(data.socket)
-		if data.errors and data.erros < 10
+		if data.socket_status === "open"
+			if state.TESTUSER
+				let msg = {
+					reconnect_id: state.session_identity
+				}
+				state.sockets[wsid].sendmsg(msg)
+			if state.identity_data and state.identity_data.data.servers
+				for own server, serverdata of state.identity_data.data.servers
+					for msg in serverdata.messages
+						let newmsg = 
+							message_data: 
+								type: msg.type
+								original:
+									type: msg.type
+							payload: msg.payload
+							identity_data:
+								from_identity: state.identity_data.identity
+								to_identity: serverdata.identity
+								identity: state.identity_data.yoyth_login_identity
+						state.sockets[wsid].sendmsg(newmsg)
+
+		elif data.errors and data.erros < 10
 			if data.socket_status === "close" or data.socket_status === "error"
 				if data.socket.reconnect
 					console.log("reconnect after " + data.socket_status)
 					create_socket({
 						...data.socket
 					})
-			elif data.socket_status === "open"
-				if data.socket.resend_msgs and data.socket.resend_msgs.length > 0
-					for msg in data.socket.resend_msgs
-						console.log("socket resubscribe ", msg)
-						state.sockets[wsid].sendmsg(msg)
+		else
+			console.dir(data)
+def get_config
+	console.log(window.location.href)
+	const response = await fetch(window.location.href+"yoythconfig");
+	console.dir(response)
+	const data = await response.json();
+	console.log("response")
+	console.dir(data)
 
-def getUserInfo(token)
-	if not token
-		return
-	const response = await fetch(`https://www.googleapis.com/oauth2/v1/userinfo?access_token={token}`);
-	const user = await response.json();
-	if 'amedia.no' in user.email
-		return user
-	return
+	for own attr, value of data
+		state[attr] = value
+
+	console.dir(state)
+	if state.TESTUSER
+		let userdata = JSON.parse(state.TESTUSER)
+		state.identity = userdata.yoyth_login_identity
+		state.identity_data = userdata
+		state.session_identity = userdata.identity
+		state.signedIn = true
 
 def init
-	def createScript
-		const script = document.createElement("script");
-		script.src = "https://accounts.google.com/gsi/client";
-		script.async = true;
-		document.body.appendChild(script);
-	
+	await get_config()
+	console.log("after config")
 	init_user()
-	if not state.test
-		createScript()
 
 def init_user
+	def from_state(chkvar)
+		if chkvar.constructor == Object
+			let returns = {}
+			for own attr, val of chkvar
+				returns[attr] = from_state(val)
+			return returns
+
+		if state[chkvar] 
+			return state[chkvar]
+		else
+			return chkvar
+
 	if 'localhost' in window.location.href
 		localhost = true
+
 	const url = window.location.href.split("/")
 	if url.length > 3 and url[url.length - 1] == "test_components"
 		initiate_test_env()
 		imba.commit()
 		return
-
-	const token = localStorage.getItem(GOOGLE_USER_TOKEN_KEY);
-	if token
-		state.access_token = token
-		const user = await getUserInfo(token);
-
-		if not user
-			console.log("error sign out")
-			signOutGoogle()			
-		else
-			state.google_user = user
-			state.signedIn = true
-
-	for command in config.commands
-		if not state.sockets[command.wsid]
+	console.log("establish conn")
+	for own conn, conn_attr of config.connections
+		console.log("wsid" + conn)
+		if not state.sockets[conn]
 			create_socket({
-				id: command.wsid
-				host: config.connection[command.wsid].url
-				resend: config.connection[command.wsid].resend
-				reconnect: config.connection[command.wsid].reconnect
-				onmessage: ic_dispatcher.onMessage
-				onStatusChange: onSocketStatusChange(command.wsid)
+				id: conn
+				host: from_state(conn_attr.url)
+				resend: conn_attr.resend
+				reconnect: conn_attr.reconnect
+				onmessage: dispatch
+				onStatusChange: onSocketStatusChange(conn)
 			})
-		command.identity_data.access_token = token
-		sendCommand(command)
 
-	for own event, action of config.events
-		ic_dispatcher.route(event, action)
+	if state.signedIn
+		const settings_msg = 
+			message_data:
+				type: "get_user_settings"
+			identity_data:
+				identity: state.identity
+				to_identity: state.YOYTHUSERSERVERIDENTITY
+				from_identity: state.session_identity
+			payload: {}
+		dispatch(settings_msg)
 
 	setTimeout(&,60000) do
 		check_for_resubscribe()
@@ -352,6 +355,13 @@ def init_user
 export def receive_ping()
 	console.log("ping received")
 
+def server_status()
+	let servers = []
+	if state.identity_data.data and state.identity_data.data.servers
+		for own server, serverdata of state.identity_data.data.servers
+			servers.push({id: server, identity: serverdata.identity})
+	return servers
+	
 def ping_all_sockets()
 	console.log("ping")
 	for own socketid, socket of state.sockets
@@ -359,7 +369,8 @@ def ping_all_sockets()
 		sendCommand({
 			type: 'ping'
 			request_type: "ping"
-			payload: "ping"
+			payload:
+				servers: server_status()
 			wsid: socketid
 		})
 
@@ -396,8 +407,8 @@ def initiate_test_env
 export def create_socket(parm)
 	state.sockets[parm.id] = socket().initialize({
 		...parm
-		onmessage: ic_dispatcher.onMessage
-		onStatusChange: onSocketStatusChange(parm.id)
+		onmessage: parm.onmessage or dispatch
+		onStatusChange: parm.onSocketStatusChange or onSocketStatusChange(parm.id)
 	})
 
 export def login({email, pw})
@@ -423,12 +434,15 @@ export def addDashboard()
 
 export def sendCommand(send)
 	const msgid = uuidv4().toString();
-	state.requests[msgid] = send;
+	if send.type != "ping"
+		state.requests[msgid] = send;
 	const senddata = 
 		message_data: 
 			id: msgid
 			type: send.type
 			request_data: send.request_data or {}
+			original:
+				type: send.type
 		identity_data: send.identity_data or {}
 		payload: send.payload
 	senddata.message_data.request_data.request_id = msgid	
@@ -512,10 +526,6 @@ export def flipMenuOpen()
 export def resetSignIn()
 	console.log "resatt"
 	state.signIn = false
-
-export def signIn()
-	state.signIn = true
-	signInGoogle()
 
 export def signOut()
 	state.signedIn = false

@@ -1,5 +1,5 @@
 {
-  "name": "ic-imba",
+  "name": "yoyth-connect",
   "scripts": {
     "dev": "imba -wMS src/server.imba",
     "build": "imba build --production --base ./ src/server.imba",
@@ -9,21 +9,22 @@
   "dependencies": {
     "chart.js": "^4.3.0",
     "chartjs-plugin-datalabels": "^2.2.0",
-    "express": "^4.18.2",
+    "cross-fetch": "^4.0.0",
+    "easymde": "^2.18.0",
+    "express": "^4.18.3",
     "fs": "^0.0.1-security",
-    "imba": "^2.0.0-alpha.229",
+    "imba": "^2.0.0-alpha.231",
+    "moment": "^2.30.1",
     "pako": "^2.1.0",
     "pouchdb-adapter-idb": "^8.0.1",
     "prompt-sync": "^4.2.0",
-    "rxdb": "^14.12.0",
-    "rxjs": "^7.8.1",
-    "uuid": "^9.0.0",
-    "ws": "^8.13.0"
+    "uuid": "^9.0.1",
+    "ws": "^8.16.0"
   },
-  "repository": "gberth/ic-imba",
-  "description": "ic connect imba version",
+  "repository": "gberth/yoyth-connect",
+  "description": "yoyth connect imba version",
   "version": "1.0.0",
-  "homepage": "https://github.com/gberth/ic-imba",
+  "homepage": "https://github.com/gberth/yoyth-connect",
   "author": "Author Name (https://github.com/gberth)",
   "license": "ISC"
 }
