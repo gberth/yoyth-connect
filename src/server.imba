@@ -233,7 +233,6 @@ app.get('/yoythconfig') do(req,res)
 
 app.get('/yoythvippsrequest') do(req,res)
 	console.log("vippsrequest")
-	console.dir(req.body)
 	console.dir(req.query)
 	res.send()
 	vippsquery.payload.query = req.query
